@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4ctxteki8oa2"]
+
+[ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_yerf7"]
+[ext_resource type="Script" path="res://Scripts/OptionsMenu.gd" id="2_2uich"]
+[ext_resource type="PackedScene" uid="uid://tqhlq2q0yret" path="res://Nodes/Scenes/game.tscn" id="2_qi31i"]
+[ext_resource type="PackedScene" uid="uid://c76x5ojltri0v" path="res://Nodes/Scenes/main_menu.tscn" id="3_p2peg"]
+
+[node name="root" type="Node"]
+process_mode = 3
+script = ExtResource("1_yerf7")
+gameScene = ExtResource("2_qi31i")
+menuScene = ExtResource("3_p2peg")
+
+[node name="OptionsMenu" type="CanvasLayer" parent="."]
+layer = 15
+script = ExtResource("2_2uich")
+
+[node name="c" type="Control" parent="OptionsMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="OptionsMenu/c"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 124.0
+offset_right = 809.0
+offset_bottom = 519.0
+
+[node name="Label" type="Label" parent="OptionsMenu/c/Panel"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 19.0
+offset_right = 325.0
+offset_bottom = 91.0
+theme_override_font_sizes/font_size = 40
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="OptionsMenu/c/Panel"]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 303.0
+offset_right = 301.0
+offset_bottom = 363.0
+theme_override_font_sizes/font_size = 30
+text = "BACK"
+
+[node name="LoadingScreen" type="CanvasLayer" parent="."]
+layer = 20
+visible = false
+
+[node name="c" type="Control" parent="LoadingScreen"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="LoadingScreen/c"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="OptionsMenu/c/Panel/Button" to="OptionsMenu" method="BackButton"]

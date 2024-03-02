@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://c76x5ojltri0v"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_w28dh"]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_w28dh")
+
+[node name="c" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="c"]
+layout_mode = 0
+offset_left = 463.0
+offset_top = 378.0
+offset_right = 650.0
+offset_bottom = 428.0
+theme_override_font_sizes/font_size = 30
+text = "START"
+
+[node name="OptionsButton" type="Button" parent="c"]
+layout_mode = 0
+offset_left = 463.0
+offset_top = 446.0
+offset_right = 650.0
+offset_bottom = 496.0
+theme_override_font_sizes/font_size = 30
+text = "OPTIONS"
+
+[node name="QuitButton" type="Button" parent="c"]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 513.0
+offset_right = 649.0
+offset_bottom = 563.0
+theme_override_font_sizes/font_size = 30
+text = "QUIT"
+
+[node name="Title" type="Label" parent="c"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 126.0
+offset_right = 1101.0
+offset_bottom = 233.0
+theme_override_font_sizes/font_size = 67
+text = "some sewer game maybe idk <3"
+
+[connection signal="pressed" from="c/StartButton" to="." method="StartButton"]
+[connection signal="pressed" from="c/OptionsButton" to="." method="OptionsButton"]
+[connection signal="pressed" from="c/QuitButton" to="." method="QuitButton"]

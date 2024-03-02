@@ -1,0 +1,118 @@
+[gd_scene load_steps=10 format=3 uid="uid://tqhlq2q0yret"]
+
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_i4kfv"]
+[ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="2_yhb5q"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="3_q5ueo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odqqu"]
+size = Vector2(3000, 50)
+
+[sub_resource type="Gradient" id="Gradient_ttfc4"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.211765, 0.356863, 0.545098, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tts0i"]
+gradient = SubResource("Gradient_ttfc4")
+width = 300
+height = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nur2u"]
+size = Vector2(32, 64)
+
+[sub_resource type="Gradient" id="Gradient_16o21"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0.870588, 0.756863, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nyamh"]
+gradient = SubResource("Gradient_16o21")
+width = 32
+
+[node name="Game" type="Node"]
+script = ExtResource("1_i4kfv")
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource("2_yhb5q")
+
+[node name="Control" type="Control" parent="PauseMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PauseMenu/Control"]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 149.0
+offset_right = 685.0
+offset_bottom = 455.0
+
+[node name="Label" type="Label" parent="PauseMenu/Control/Panel"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 13.0
+offset_right = 174.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 40
+text = "PAUSE"
+horizontal_alignment = 1
+
+[node name="ButtonResume" type="Button" parent="PauseMenu/Control/Panel"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 72.0
+offset_right = 201.0
+offset_bottom = 137.0
+theme_override_font_sizes/font_size = 25
+text = "RESUME"
+
+[node name="ButtonOptions" type="Button" parent="PauseMenu/Control/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 149.0
+offset_right = 200.0
+offset_bottom = 214.0
+theme_override_font_sizes/font_size = 25
+text = "OPTIONS"
+
+[node name="ButtonMainMenu" type="Button" parent="PauseMenu/Control/Panel"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 224.0
+offset_right = 201.0
+offset_bottom = 289.0
+theme_override_font_sizes/font_size = 25
+text = "MAIN MENU"
+
+[node name="Game" type="Node2D" parent="."]
+process_mode = 1
+
+[node name="Floor" type="StaticBody2D" parent="Game"]
+
+[node name="Shape" type="CollisionShape2D" parent="Game/Floor"]
+shape = SubResource("RectangleShape2D_odqqu")
+
+[node name="Sprite" type="Sprite2D" parent="Game/Floor"]
+scale = Vector2(10, 10)
+texture = SubResource("GradientTexture2D_tts0i")
+
+[node name="Player" type="CharacterBody2D" parent="Game"]
+position = Vector2(0, -100)
+script = ExtResource("3_q5ueo")
+
+[node name="Camera" type="Camera2D" parent="Game/Player"]
+offset = Vector2(0, -100)
+
+[node name="Shape" type="CollisionShape2D" parent="Game/Player"]
+shape = SubResource("RectangleShape2D_nur2u")
+
+[node name="Sprite" type="Sprite2D" parent="Game/Player"]
+texture = SubResource("GradientTexture2D_nyamh")
+
+[connection signal="pressed" from="PauseMenu/Control/Panel/ButtonResume" to="PauseMenu" method="ResumeButton"]
+[connection signal="pressed" from="PauseMenu/Control/Panel/ButtonOptions" to="PauseMenu" method="OptionsButton"]
+[connection signal="pressed" from="PauseMenu/Control/Panel/ButtonMainMenu" to="PauseMenu" method="MainMenuButton"]
