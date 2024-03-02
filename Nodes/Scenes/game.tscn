@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://m5ngv2myjcfj" path="res://Assets/Art/Player/Player_idle.png" id="4_602yr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odqqu"]
-size = Vector2(1920, 192)
+size = Vector2(5000, 192)
 
 [sub_resource type="Gradient" id="Gradient_ttfc4"]
 interpolation_mode = 1
@@ -21,7 +21,7 @@ height = 32
 [sub_resource type="TileSet" id="TileSet_74e6m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nur2u"]
-size = Vector2(96, 96)
+size = Vector2(32, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25v7c"]
 atlas = ExtResource("4_602yr")
@@ -201,13 +201,14 @@ position = Vector2(0, 200)
 script = ExtResource("3_q5ueo")
 
 [node name="Shape" type="CollisionShape2D" parent="Game/Player"]
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_nur2u")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Game/Player"]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_1n84n")
 animation = &"idle"
-frame_progress = 0.668535
+frame_progress = 0.489946
 
 [connection signal="pressed" from="PauseMenu/Control/Panel/ButtonResume" to="PauseMenu" method="ResumeButton"]
 [connection signal="pressed" from="PauseMenu/Control/Panel/ButtonOptions" to="PauseMenu" method="OptionsButton"]

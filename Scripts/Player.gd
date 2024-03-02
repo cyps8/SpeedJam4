@@ -17,22 +17,41 @@ var rollTimer = 0.0
 var rollTime = 0.2
 
 var jumping = false
+var wasInAir = false
+var crouching = false
+var sliding = false
+
+var crouchJump = false
+var slideJump = false
 
 func _ready():
 	$Sprite.play("idle")
 
 func _physics_process(delta):
 	
-	var gravMult: float = 3.0
+	var gravMult: float = 3.5
+
+	if Input.is_action_pressed("Crouch"):
+		crouching = true
+	else:
+		crouching = false
 
 	if jumping:
 		if !Input.is_action_pressed("Jump") || is_on_floor() || velocity.y > 0:
 			jumping = false
+			crouchJump = false
+			slideJump = false
 		else:
-			gravMult = 2.0
+			if crouchJump:
+				gravMult = 1.5
+			else:
+				gravMult = 2.0
 
-	if not is_on_floor():
+	if !is_on_floor():
 		velocity.y += gravity * delta * gravMult
+		sliding = false
+	elif is_on_floor() && wasInAir && crouching:
+		sliding = true
 
 	coyoteTime -= delta
 	preJump -= delta
@@ -43,12 +62,20 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Jump") && !is_on_floor():
 		preJump = 0.1
 
-	if ((Input.is_action_just_pressed("Jump") && (is_on_floor()  || coyoteTime > 0)) || (preJump > 0 && is_on_floor())) && !rolling:
+	if ((Input.is_action_just_pressed("Jump") && ((is_on_floor() || coyoteTime > 0))) || (preJump > 0 && is_on_floor())) && (!rolling || coyoteTime > 0):
 		velocity.y = JUMP_VELOCITY
 		jumping = true
+		if crouching:
+			if sliding:
+				slideJump = true
+				velocity.x *= 1.5
+			else:
+				crouchJump = true
 
 	if Input.is_action_just_pressed("Roll") && !rolling:
 		rolling = true
+		if is_on_floor():
+			coyoteTime = 0.1
 		rollTimer = rollTime
 		var tween: Tween = create_tween()
 		tween.tween_property($Sprite, "rotation", deg_to_rad(360 * lastDirection), rollTime)
@@ -57,13 +84,21 @@ func _physics_process(delta):
 		var preserve = false
 		var direction = Input.get_axis("Left", "Right")
 		if direction:
-			if !((velocity.x >= maxRunSpeed && direction > 0) || (velocity.x <= -maxRunSpeed && direction < 0)):
+			if sliding:
+				if !(velocity.x > 0 && direction > 0 || velocity.x < 0 && direction < 0) || !crouching:
+					sliding = false
+			elif !((velocity.x >= maxRunSpeed && direction > 0) || (velocity.x <= -maxRunSpeed && direction < 0)):
 				velocity.x += direction * speedIncrease
 				lastDirection = direction
 			else:
 				preserve = true
+		else:
+			sliding = false
 		if is_on_floor():
-			velocity.x = move_toward(velocity.x, 0, abs(velocity.x) * 0.25)
+			if sliding:
+				velocity.x = move_toward(velocity.x, 0, abs(velocity.x) * 0.02)
+			else:
+				velocity.x = move_toward(velocity.x, 0, abs(velocity.x) * 0.25)
 		elif preserve == false:
 			velocity.x = move_toward(velocity.x, 0, abs(velocity.x) * 0.1)
 		else:
@@ -75,6 +110,7 @@ func _physics_process(delta):
 			rolling = false
 
 	wasOnFloor = is_on_floor()
+	wasInAir = !is_on_floor()
 
 	move_and_slide()
 
@@ -86,3 +122,14 @@ func _process(_delta):
 
 	if !rolling:
 		$Sprite.rotation = 0
+
+	if crouching && is_on_floor():
+		$Sprite.scale = Vector2(3, 1.5)
+		$Sprite.offset = Vector2(0, 16)
+		if sliding:
+			pass
+		else:
+			pass
+	else:
+		$Sprite.scale = Vector2(3, 3)
+		$Sprite.offset = Vector2(0, 0)
