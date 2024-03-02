@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://tqhlq2q0yret"]
+[gd_scene load_steps=22 format=3 uid="uid://tqhlq2q0yret"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_i4kfv"]
 [ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="2_yhb5q"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="3_q5ueo"]
+[ext_resource type="Texture2D" uid="uid://m5ngv2myjcfj" path="res://Assets/Art/Player/Player_idle.png" id="4_602yr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odqqu"]
 size = Vector2(1920, 192)
@@ -17,18 +18,95 @@ gradient = SubResource("Gradient_ttfc4")
 width = 320
 height = 32
 
+[sub_resource type="TileSet" id="TileSet_74e6m"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nur2u"]
-size = Vector2(192, 192)
+size = Vector2(96, 96)
 
-[sub_resource type="Gradient" id="Gradient_16o21"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.85147, 0.756311, 0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_25v7c"]
+atlas = ExtResource("4_602yr")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nyamh"]
-gradient = SubResource("Gradient_16o21")
-width = 32
-height = 32
+[sub_resource type="AtlasTexture" id="AtlasTexture_egy6j"]
+atlas = ExtResource("4_602yr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7ng2"]
+atlas = ExtResource("4_602yr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0ooq"]
+atlas = ExtResource("4_602yr")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb2u4"]
+atlas = ExtResource("4_602yr")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rg18j"]
+atlas = ExtResource("4_602yr")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwigu"]
+atlas = ExtResource("4_602yr")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4ejg"]
+atlas = ExtResource("4_602yr")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdyh1"]
+atlas = ExtResource("4_602yr")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqrmc"]
+atlas = ExtResource("4_602yr")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k13c"]
+atlas = ExtResource("4_602yr")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1n84n"]
+animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_25v7c")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_egy6j")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_m7ng2")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_c0ooq")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_rb2u4")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_rg18j")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_dwigu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4ejg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdyh1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqrmc")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_6k13c")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_i4kfv")
@@ -114,6 +192,10 @@ position = Vector2(0, -444)
 scale = Vector2(6, 6)
 texture = SubResource("GradientTexture2D_tts0i")
 
+[node name="TileMap" type="TileMap" parent="Game/Pipes"]
+tile_set = SubResource("TileSet_74e6m")
+format = 2
+
 [node name="Player" type="CharacterBody2D" parent="Game"]
 position = Vector2(0, 200)
 script = ExtResource("3_q5ueo")
@@ -121,9 +203,11 @@ script = ExtResource("3_q5ueo")
 [node name="Shape" type="CollisionShape2D" parent="Game/Player"]
 shape = SubResource("RectangleShape2D_nur2u")
 
-[node name="Sprite" type="Sprite2D" parent="Game/Player"]
-scale = Vector2(6, 6)
-texture = SubResource("GradientTexture2D_nyamh")
+[node name="Sprite" type="AnimatedSprite2D" parent="Game/Player"]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_1n84n")
+animation = &"idle"
+frame_progress = 0.668535
 
 [connection signal="pressed" from="PauseMenu/Control/Panel/ButtonResume" to="PauseMenu" method="ResumeButton"]
 [connection signal="pressed" from="PauseMenu/Control/Panel/ButtonOptions" to="PauseMenu" method="OptionsButton"]

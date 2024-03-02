@@ -47,7 +47,8 @@ offset_top = 308.0
 offset_right = 1453.0
 offset_bottom = 415.0
 theme_override_font_sizes/font_size = 67
-text = "some sewer game maybe idk <3"
+text = "SPEED PLUMBER"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="c/StartButton" to="." method="StartButton"]
 [connection signal="pressed" from="c/OptionsButton" to="." method="OptionsButton"]
