@@ -25,10 +25,10 @@ grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="OptionsMenu/c"]
 layout_mode = 0
-offset_left = 370.0
-offset_top = 124.0
-offset_right = 809.0
-offset_bottom = 519.0
+offset_left = 770.0
+offset_top = 314.0
+offset_right = 1209.0
+offset_bottom = 709.0
 
 [node name="Label" type="Label" parent="OptionsMenu/c/Panel"]
 layout_mode = 0
