@@ -36,8 +36,10 @@ func _physics_process(delta):
 
 	if Input.is_action_pressed("Crouch"):
 		crouching = true
+		maxRunSpeed = 100
 	else:
 		crouching = false
+		maxRunSpeed = 400
 
 	if jumping:
 		if !Input.is_action_pressed("Jump") || is_on_floor() || velocity.y > 0:
@@ -131,7 +133,7 @@ func _process(_delta):
 
 	if velocity.x != 0:
 		$Sprite.play("walking")
-		$Sprite.speed_scale = abs(velocity.x) / maxRunSpeed * 2
+		$Sprite.speed_scale = abs(velocity.x) / maxRunSpeed * 2.5
 	else:
 		$Sprite.play("idle")
 		$Sprite.speed_scale = 1

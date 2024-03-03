@@ -8,4 +8,4 @@ func _process(_delta):
 	if target_position < 0:
 		target_position = 0
 
-	position.x = lerp(position.x, target_position, 0.07)
+	position.x = lerp(position.x, target_position, 0.03)

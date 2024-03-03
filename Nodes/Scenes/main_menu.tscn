@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c76x5ojltri0v"]
+[gd_scene load_steps=4 format=3 uid="uid://c76x5ojltri0v"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_w28dh"]
+[ext_resource type="Theme" uid="uid://wsg6dbyy4h7y" path="res://Res/MainTheme.tres" id="2_ermwq"]
+[ext_resource type="TileSet" uid="uid://b14pwnmeoipd5" path="res://Res/Tilemap.tres" id="2_r0yb6"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_w28dh")
@@ -12,30 +14,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_ermwq")
 
 [node name="StartButton" type="Button" parent="c"]
 layout_mode = 0
-offset_left = 834.0
+offset_left = 830.0
 offset_top = 642.0
-offset_right = 1021.0
+offset_right = 1030.0
 offset_bottom = 692.0
 theme_override_font_sizes/font_size = 30
 text = "START"
 
 [node name="OptionsButton" type="Button" parent="c"]
 layout_mode = 0
-offset_left = 834.0
+offset_left = 830.0
 offset_top = 710.0
-offset_right = 1021.0
+offset_right = 1030.0
 offset_bottom = 760.0
 theme_override_font_sizes/font_size = 30
 text = "OPTIONS"
 
 [node name="QuitButton" type="Button" parent="c"]
 layout_mode = 0
-offset_left = 833.0
+offset_left = 830.0
 offset_top = 777.0
-offset_right = 1020.0
+offset_right = 1030.0
 offset_bottom = 827.0
 theme_override_font_sizes/font_size = 30
 text = "QUIT"
@@ -49,6 +52,14 @@ offset_bottom = 415.0
 theme_override_font_sizes/font_size = 67
 text = "SPEED PLUMBER"
 horizontal_alignment = 1
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(0, 24)
+scale = Vector2(3, 3)
+tile_set = ExtResource("2_r0yb6")
+rendering_quadrant_size = 32
+format = 2
+layer_0/tile_data = PackedInt32Array(655360, 1, 1, 655361, 1, 1, 655362, 1, 1, 655363, 1, 1, 655364, 1, 1, 655365, 1, 1, 655366, 1, 1, 655367, 1, 1, 655368, 1, 1, 655369, 1, 1, 655370, 1, 1, 655371, 1, 1, 655372, 1, 1, 655373, 1, 1, 655374, 1, 1, 655375, 1, 1, 655376, 1, 1, 655377, 1, 1, 655378, 1, 1, 655379, 1, 1, 589824, 65537, 0, 589825, 65537, 0, 589826, 65537, 0, 589827, 65537, 0, 589828, 65537, 0, 589829, 65537, 0, 589830, 65537, 0, 589831, 65537, 0, 589832, 65537, 0, 589833, 65537, 0, 589834, 65537, 0, 589835, 65537, 0, 589836, 65537, 0, 589837, 65537, 0, 589838, 65537, 0, 589839, 65537, 0, 589840, 65537, 0, 589841, 65537, 0, 589842, 65537, 0, 589843, 65537, 0, 65536, 131073, 4, 65537, 131073, 4, 65538, 131073, 4, 65539, 131073, 4, 65540, 131073, 4, 65541, 131073, 4, 65542, 131073, 4, 65543, 131073, 4, 65544, 131073, 4, 65545, 131073, 4, 65546, 131073, 4, 65547, 131073, 4, 65548, 131073, 4, 65549, 131073, 4, 65550, 131073, 4, 65551, 131073, 4, 65552, 131073, 4, 65553, 131073, 4, 65554, 131073, 4, 65555, 131073, 4, 19, 131073, 3, 18, 131073, 3, 17, 131073, 3, 16, 589825, 4, 15, 589825, 4, 14, 131073, 3, 13, 131073, 3, 12, 131073, 3, 11, 131073, 3, 10, 131073, 3, 9, 131073, 3, 8, 131073, 3, 7, 131073, 3, 6, 589825, 4, 5, 131073, 3, 0, 589825, 4, 65535, 131073, 3, 1, 589825, 4, 2, 131073, 3, 3, 589825, 4, 4, 589825, 4, 131071, 131073, 4, 20, 131073, 3, 65556, 131073, 4, 655359, 65537, 0, 589844, 65537, 0, 720895, 65537, 1, 655380, 65537, 1, -1, 131073, 3, -65536, 131073, 3, -65535, 131073, 3, -65534, 131073, 3, -65533, 131073, 3, -65532, 131073, 3, -65531, 131073, 3, -65530, 131073, 3, -65524, 131073, 3, -65523, 131073, 3, -65522, 131073, 3, -65521, 131073, 3, -65520, 131073, 3, -65519, 131073, 3, -65518, 131073, 3, -65517, 131073, 3, -65516, 131073, 3, -65525, 131073, 3, -65526, 131073, 3, -65527, 131073, 3, -65528, 131073, 3, -65529, 131073, 3)
 
 [connection signal="pressed" from="c/StartButton" to="." method="StartButton"]
 [connection signal="pressed" from="c/OptionsButton" to="." method="OptionsButton"]
