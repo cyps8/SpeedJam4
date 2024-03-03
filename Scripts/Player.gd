@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const JUMP_VELOCITY = -800.0
+const JUMP_VELOCITY = -900.0
 var maxRunSpeed = 600
 var speedIncrease = 200
 
@@ -27,6 +27,8 @@ var sliding = false
 var crouchJump = false
 var slideJump = false
 
+var uncrouch = false
+
 func _ready():
 	$Sprite.play("idle")
 
@@ -40,23 +42,27 @@ func _physics_process(delta):
 	else:
 		crouching = false
 		maxRunSpeed = 400
+		uncrouch = false
 
 	if jumping:
 		if !Input.is_action_pressed("Jump") || is_on_floor() || velocity.y > 0:
 			jumping = false
 			crouchJump = false
 			slideJump = false
+			uncrouch = true
 		else:
 			if crouchJump:
-				gravMult = 1.5
+				gravMult = 1.4
 			else:
 				gravMult = 2.0
 
 	if !is_on_floor():
 		velocity.y += gravity * delta * gravMult
 		sliding = false
-	elif is_on_floor() && wasInAir && crouching:
-		sliding = true
+	elif is_on_floor() && wasInAir:
+		AudioPlayer.instance.PlaySound(1, AudioPlayer.SoundType.SFX)
+		if crouching && !uncrouch:
+			sliding = true
 
 	coyoteTime -= delta
 	preJump -= delta
@@ -68,6 +74,7 @@ func _physics_process(delta):
 		preJump = 0.1
 
 	if ((Input.is_action_just_pressed("Jump") && ((is_on_floor() || coyoteTime > 0))) || (preJump > 0 && is_on_floor())) && (!rolling || coyoteTime > 0):
+		AudioPlayer.instance.PlaySound(0, AudioPlayer.SoundType.SFX)
 		velocity.y = JUMP_VELOCITY
 		jumping = true
 		if crouching:
@@ -78,6 +85,7 @@ func _physics_process(delta):
 				crouchJump = true
 
 	if Input.is_action_just_pressed("Roll") && !rolling:
+		AudioPlayer.instance.PlaySound(2, AudioPlayer.SoundType.SFX)
 		rolling = true
 		if is_on_floor():
 			coyoteTime = 0.1
