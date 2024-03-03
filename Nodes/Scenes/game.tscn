@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://tqhlq2q0yret"]
+[gd_scene load_steps=32 format=3 uid="uid://tqhlq2q0yret"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_i4kfv"]
 [ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="2_yhb5q"]
@@ -10,6 +10,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nur2u"]
 size = Vector2(32, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfw52"]
+atlas = ExtResource("4_0wq4y")
+region = Rect2(672, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yryi3"]
 atlas = ExtResource("4_0wq4y")
@@ -55,6 +59,14 @@ region = Rect2(288, 0, 32, 32)
 atlas = ExtResource("4_0wq4y")
 region = Rect2(320, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjtqe"]
+atlas = ExtResource("4_0wq4y")
+region = Rect2(640, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juahc"]
+atlas = ExtResource("4_0wq4y")
+region = Rect2(736, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3pfho"]
 atlas = ExtResource("4_0wq4y")
 region = Rect2(352, 0, 32, 32)
@@ -89,6 +101,14 @@ region = Rect2(576, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1n84n"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfw52")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 4.0,
 "texture": SubResource("AtlasTexture_yryi3")
@@ -127,9 +147,20 @@ animations = [{
 "name": &"idle",
 "speed": 8.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjtqe")
+}],
 "loop": true,
-"name": &"jump",
+"name": &"jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juahc")
+}],
+"loop": true,
+"name": &"rolling",
 "speed": 5.0
 }, {
 "frames": [{
@@ -247,7 +278,7 @@ shape = SubResource("RectangleShape2D_nur2u")
 [node name="Sprite" type="AnimatedSprite2D" parent="Game/Player"]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_1n84n")
-animation = &"jump"
+animation = &"rolling"
 
 [connection signal="pressed" from="PauseMenu/c/Panel/ButtonResume" to="PauseMenu" method="ResumeButton"]
 [connection signal="pressed" from="PauseMenu/c/Panel/ButtonOptions" to="PauseMenu" method="OptionsButton"]

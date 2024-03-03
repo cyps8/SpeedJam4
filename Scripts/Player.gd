@@ -131,17 +131,27 @@ func _process(_delta):
 	else:
 		$Sprite.flip_h = true
 
-	if velocity.x != 0:
-		$Sprite.play("walking")
-		$Sprite.speed_scale = abs(velocity.x) / maxRunSpeed * 2.5
+	if rolling:
+		$Sprite.play("rolling")
 	else:
-		$Sprite.play("idle")
-		$Sprite.speed_scale = 1
+		if is_on_floor():
+			if velocity.x != 0:
+				$Sprite.play("walking")
+				$Sprite.speed_scale = abs(velocity.x) / maxRunSpeed * 2.5
+			else:
+				$Sprite.play("idle")
+				$Sprite.speed_scale = 1
+		else:
+			if velocity.y < 0:
+				$Sprite.play("jumping")
+			else:
+				$Sprite.play("falling")
+	
 
 	if !rolling:
 		$Sprite.rotation = 0
 
-	if crouching && is_on_floor():
+	if crouching && is_on_floor() && !rolling:
 		$Sprite.scale = Vector2(3, 1.5)
 		$Sprite.offset = Vector2(0, 16)
 		if sliding:
