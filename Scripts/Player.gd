@@ -4,6 +4,9 @@ const JUMP_VELOCITY = -800.0
 var maxRunSpeed = 400
 var speedIncrease = 100
 
+var rollSpeed = 800
+var currentRollSpeed = 800
+
 var wasOnFloor = false
 var coyoteTime = 0
 var preJump = 0
@@ -104,10 +107,16 @@ func _physics_process(delta):
 		else:
 			velocity.x = move_toward(velocity.x, 0, abs(velocity.x) * 0.01)
 	else:
-		velocity.x = lastDirection * 800
+		if (velocity.x > rollSpeed && lastDirection > 0) || (velocity.x < -rollSpeed && lastDirection < 0):
+			currentRollSpeed = abs(velocity.x)
+		velocity.x = lastDirection * currentRollSpeed
 		rollTimer -= delta
 		if rollTimer <= 0:
 			rolling = false
+			currentRollSpeed = rollSpeed
+
+	if abs(velocity.x) < 5:
+		velocity.x = 0
 
 	wasOnFloor = is_on_floor()
 	wasInAir = !is_on_floor()
@@ -119,6 +128,13 @@ func _process(_delta):
 		$Sprite.flip_h = false
 	else:
 		$Sprite.flip_h = true
+
+	if velocity.x != 0:
+		$Sprite.play("walking")
+		$Sprite.speed_scale = abs(velocity.x) / maxRunSpeed * 2
+	else:
+		$Sprite.play("idle")
+		$Sprite.speed_scale = 1
 
 	if !rolling:
 		$Sprite.rotation = 0
