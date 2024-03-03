@@ -34,7 +34,7 @@ func _ready():
 
 func _physics_process(delta):
 	
-	var gravMult: float = 3.5
+	var gravMult: float = 4.5
 
 	if Input.is_action_pressed("Crouch"):
 		crouching = true
