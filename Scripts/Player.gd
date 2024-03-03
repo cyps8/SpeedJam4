@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 const JUMP_VELOCITY = -800.0
-var maxRunSpeed = 400
-var speedIncrease = 100
+var maxRunSpeed = 600
+var speedIncrease = 200
 
 var rollSpeed = 800
 var currentRollSpeed = 800
