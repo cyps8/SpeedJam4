@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4ctxteki8oa2"]
+[gd_scene load_steps=6 format=3 uid="uid://c4ctxteki8oa2"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_yerf7"]
 [ext_resource type="Script" path="res://Scripts/OptionsMenu.gd" id="2_2uich"]
 [ext_resource type="PackedScene" uid="uid://tqhlq2q0yret" path="res://Nodes/Scenes/game.tscn" id="2_qi31i"]
 [ext_resource type="PackedScene" uid="uid://c76x5ojltri0v" path="res://Nodes/Scenes/main_menu.tscn" id="3_p2peg"]
+[ext_resource type="Theme" uid="uid://wsg6dbyy4h7y" path="res://Res/MainTheme.tres" id="5_pc4jn"]
 
 [node name="root" type="Node"]
 process_mode = 3
@@ -22,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_pc4jn")
 
 [node name="Panel" type="Panel" parent="OptionsMenu/c"]
 layout_mode = 0
