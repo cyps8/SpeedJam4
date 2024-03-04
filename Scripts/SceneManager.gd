@@ -22,6 +22,8 @@ var currentScene: Scene = Scene.GAME
 
 var loading = false
 
+var bestTime: float = INF
+
 func _ready():
 	optionsRef = $OptionsMenu
 	remove_child(optionsRef)
@@ -33,16 +35,15 @@ func _ready():
 	ChangeScene(Scene.MAINMENU)
 
 func ChangeScene(newScene: Scene):
-	if currentScene == newScene:
-		return
-
 	if currentSceneNode != null:
 		currentSceneNode.queue_free()
 
 	if newScene == Scene.MAINMENU:
 		currentPackedScene = menuScene
+		MusicPlayer.instance.PlaySong(MusicPlayer.Song.MENU)
 	elif newScene == Scene.GAME:
 		currentPackedScene = gameScene
+		MusicPlayer.instance.PlaySong(MusicPlayer.Song.GAME)
 
 	add_child(loadingScreenRef)
 		
