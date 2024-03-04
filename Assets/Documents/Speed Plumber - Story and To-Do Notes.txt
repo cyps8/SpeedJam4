@@ -9,14 +9,22 @@ onto the surface (and drown you in the process)
 
 TO-DO (High):
 
-[] Slide frame for Player
+[x] Slide frame for Player
+[] Player turning valve
+[] HUD health
+[] HUD stamina
+[] HUD overflow
 
 --------------------
 
 TO-DO (Med):
+
+[] Coins
+[] Rat
 
 --------------------
 
 TO-DO (Low):
 
 [] Repeating texture for water
+[] Water flow from grate
