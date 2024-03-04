@@ -47,7 +47,7 @@ TO-DO (Med):
 
 TO-DO (Low):
 
-[] Repeating texture for water
+[x] Repeating texture for water
 [] Water flow from grate
 [] Rat
 [] Coins
