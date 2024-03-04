@@ -1,0 +1,114 @@
+[gd_scene load_steps=13 format=3 uid="uid://rde6hjb8ni5f"]
+
+[ext_resource type="Script" path="res://Scripts/gator.gd" id="1_6rwhv"]
+[ext_resource type="Texture2D" uid="uid://c1rk6f4wjdv1k" path="res://Assets/Art/Enemies/Gator.png" id="2_kl251"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hl6w6"]
+size = Vector2(80.5, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anmre"]
+size = Vector2(63, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdipf"]
+atlas = ExtResource("2_kl251")
+region = Rect2(576, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iiae"]
+atlas = ExtResource("2_kl251")
+region = Rect2(672, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1stig"]
+atlas = ExtResource("2_kl251")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv6io"]
+atlas = ExtResource("2_kl251")
+region = Rect2(480, 0, 96, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uew1d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdipf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6iiae")
+}],
+"loop": false,
+"name": &"bite",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1stig")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv6io")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpb3l"]
+size = Vector2(20, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_22iog"]
+size = Vector2(13, 8.33333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1ki6"]
+size = Vector2(139, 20)
+
+[node name="Gator" type="RigidBody2D" groups=["Floatable"]]
+collision_layer = 5
+collision_mask = 5
+mass = 10.0
+gravity_scale = 3.0
+lock_rotation = true
+linear_damp = 6.12
+script = ExtResource("1_6rwhv")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(-2.25, 5)
+shape = SubResource("RectangleShape2D_hl6w6")
+
+[node name="Shape2" type="CollisionShape2D" parent="."]
+position = Vector2(68.5, 7.5)
+shape = SubResource("RectangleShape2D_anmre")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -24)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_uew1d")
+animation = &"open"
+
+[node name="BiteZone" type="Area2D" parent="Sprite"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="Sprite/BiteZone"]
+position = Vector2(-23.3333, 9.66667)
+shape = SubResource("RectangleShape2D_fpb3l")
+debug_color = Color(0.996078, 0, 0.203922, 0.419608)
+
+[node name="Shape2" type="CollisionShape2D" parent="Sprite/BiteZone"]
+position = Vector2(-27.3333, 2)
+shape = SubResource("RectangleShape2D_22iog")
+debug_color = Color(0.996078, 0, 0.203922, 0.419608)
+
+[node name="GatorNoise" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="GatorNoise"]
+position = Vector2(27.5, -7)
+shape = SubResource("RectangleShape2D_w1ki6")
+debug_color = Color(0, 0.647059, 0.254902, 0.419608)
+
+[connection signal="body_entered" from="Sprite/BiteZone" to="." method="PlayerEated"]
+[connection signal="body_entered" from="GatorNoise" to="." method="GatorNoise"]

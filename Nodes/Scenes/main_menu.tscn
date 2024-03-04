@@ -1,9 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://c76x5ojltri0v"]
+[gd_scene load_steps=8 format=3 uid="uid://c76x5ojltri0v"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_w28dh"]
 [ext_resource type="Theme" uid="uid://wsg6dbyy4h7y" path="res://Res/MainTheme.tres" id="2_ermwq"]
 [ext_resource type="TileSet" uid="uid://b14pwnmeoipd5" path="res://Res/Tilemap.tres" id="2_r0yb6"]
 [ext_resource type="Script" path="res://Scripts/MenuButton.gd" id="3_trer4"]
+[ext_resource type="Texture2D" uid="uid://c1rk6f4wjdv1k" path="res://Assets/Art/Enemies/Gator.png" id="5_828co"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svfxd"]
+atlas = ExtResource("5_828co")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cll8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svfxd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_w28dh")
@@ -19,30 +35,40 @@ theme = ExtResource("2_ermwq")
 
 [node name="StartButton" type="Button" parent="c"]
 layout_mode = 0
-offset_left = 830.0
-offset_top = 642.0
-offset_right = 1030.0
-offset_bottom = 692.0
+offset_left = 843.795
+offset_top = 595.0
+offset_right = 1043.8
+offset_bottom = 645.0
 theme_override_font_sizes/font_size = 30
 text = "START"
 script = ExtResource("3_trer4")
 
+[node name="CreditsButton" type="Button" parent="c"]
+layout_mode = 0
+offset_left = 843.795
+offset_top = 656.18
+offset_right = 1043.8
+offset_bottom = 706.18
+theme_override_font_sizes/font_size = 30
+text = "CREDITS"
+script = ExtResource("3_trer4")
+
 [node name="OptionsButton" type="Button" parent="c"]
 layout_mode = 0
-offset_left = 830.0
-offset_top = 710.0
-offset_right = 1030.0
-offset_bottom = 760.0
+offset_left = 843.795
+offset_top = 718.64
+offset_right = 1043.8
+offset_bottom = 768.64
 theme_override_font_sizes/font_size = 30
 text = "OPTIONS"
 script = ExtResource("3_trer4")
 
 [node name="QuitButton" type="Button" parent="c"]
 layout_mode = 0
-offset_left = 830.0
-offset_top = 777.0
-offset_right = 1030.0
-offset_bottom = 827.0
+offset_left = 843.795
+offset_top = 779.0
+offset_right = 1043.8
+offset_bottom = 829.0
 theme_override_font_sizes/font_size = 30
 text = "QUIT"
 script = ExtResource("3_trer4")
@@ -51,9 +77,9 @@ disableForWeb = true
 
 [node name="Title" type="Label" parent="c"]
 layout_mode = 0
-offset_left = 422.0
+offset_left = 459.0
 offset_top = 308.0
-offset_right = 1453.0
+offset_right = 1490.0
 offset_bottom = 415.0
 theme_override_font_sizes/font_size = 67
 text = "SPEED PLUMBER"
@@ -67,6 +93,78 @@ rendering_quadrant_size = 32
 format = 2
 layer_0/tile_data = PackedInt32Array(655360, 1, 1, 655361, 1, 1, 655362, 1, 1, 655363, 1, 1, 655364, 1, 1, 655365, 1, 1, 655366, 1, 1, 655367, 1, 1, 655368, 1, 1, 655369, 1, 1, 655370, 1, 1, 655371, 1, 1, 655372, 1, 1, 655373, 1, 1, 655374, 1, 1, 655375, 1, 1, 655376, 1, 1, 655377, 1, 1, 655378, 1, 1, 655379, 1, 1, 589824, 65537, 0, 589825, 65537, 0, 589826, 65537, 0, 589827, 65537, 0, 589828, 65537, 0, 589829, 65537, 0, 589830, 65537, 0, 589831, 65537, 0, 589832, 65537, 0, 589833, 65537, 0, 589834, 65537, 0, 589835, 65537, 0, 589836, 65537, 0, 589837, 65537, 0, 589838, 65537, 0, 589839, 65537, 0, 589840, 65537, 0, 589841, 65537, 0, 589842, 65537, 0, 589843, 65537, 0, 65536, 131073, 4, 65537, 131073, 4, 65538, 131073, 4, 65539, 131073, 4, 65540, 131073, 4, 65541, 131073, 4, 65542, 131073, 4, 65543, 131073, 4, 65544, 131073, 4, 65545, 131073, 4, 65546, 131073, 4, 65547, 131073, 4, 65548, 131073, 4, 65549, 131073, 4, 65550, 131073, 4, 65551, 131073, 4, 65552, 131073, 4, 65553, 131073, 4, 65554, 131073, 4, 65555, 131073, 4, 19, 131073, 3, 18, 131073, 3, 17, 131073, 3, 16, 589825, 4, 15, 589825, 4, 14, 131073, 3, 13, 131073, 3, 12, 131073, 3, 11, 131073, 3, 10, 131073, 3, 9, 131073, 3, 8, 131073, 3, 7, 131073, 3, 6, 589825, 4, 5, 131073, 3, 0, 589825, 4, 65535, 131073, 3, 1, 589825, 4, 2, 131073, 3, 3, 589825, 4, 4, 589825, 4, 131071, 131073, 4, 20, 131073, 3, 65556, 131073, 4, 655359, 65537, 0, 589844, 65537, 0, 720895, 65537, 1, 655380, 65537, 1, -1, 131073, 3, -65536, 131073, 3, -65535, 131073, 3, -65534, 131073, 3, -65533, 131073, 3, -65532, 131073, 3, -65531, 131073, 3, -65530, 131073, 3, -65524, 131073, 3, -65523, 131073, 3, -65522, 131073, 3, -65521, 131073, 3, -65520, 131073, 3, -65519, 131073, 3, -65518, 131073, 3, -65517, 131073, 3, -65516, 131073, 3, -65525, 131073, 3, -65526, 131073, 3, -65527, 131073, 3, -65528, 131073, 3, -65529, 131073, 3)
 
+[node name="Credits" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="c" type="Control" parent="Credits"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ermwq")
+
+[node name="Panel" type="Panel" parent="Credits/c"]
+layout_mode = 0
+offset_left = 524.0
+offset_top = 252.0
+offset_right = 1350.0
+offset_bottom = 852.0
+
+[node name="Credits" type="Label" parent="Credits/c/Panel"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 16.0
+offset_right = 543.0
+offset_bottom = 73.0
+theme_override_font_sizes/font_size = 50
+text = "CREDITS"
+
+[node name="FriendlyMimic" type="Label" parent="Credits/c/Panel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 186.0
+offset_right = 226.0
+offset_bottom = 205.0
+theme_override_font_sizes/font_size = 25
+text = "FRIENDLY MIMIC - ART & DESIGN"
+
+[node name="Cyps" type="Label" parent="Credits/c/Panel"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 304.0
+offset_right = 575.0
+offset_bottom = 333.0
+theme_override_font_sizes/font_size = 25
+text = "CYPS - PROGRAMMING & DESIGN"
+
+[node name="Aenjo" type="Label" parent="Credits/c/Panel"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 416.0
+offset_right = 573.0
+offset_bottom = 445.0
+theme_override_font_sizes/font_size = 25
+text = "AENJO - MUSIC & SFX"
+
+[node name="BackButton" type="Button" parent="Credits/c/Panel"]
+layout_mode = 0
+offset_left = 297.0
+offset_top = 523.0
+offset_right = 497.0
+offset_bottom = 573.0
+theme_override_font_sizes/font_size = 30
+text = "BACK"
+script = ExtResource("3_trer4")
+
+[node name="Gator" type="AnimatedSprite2D" parent="."]
+position = Vector2(1653, 840)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_0cll8")
+
 [connection signal="pressed" from="c/StartButton" to="." method="StartButton"]
+[connection signal="pressed" from="c/CreditsButton" to="." method="CreditsButton"]
 [connection signal="pressed" from="c/OptionsButton" to="." method="OptionsButton"]
 [connection signal="pressed" from="c/QuitButton" to="." method="QuitButton"]
+[connection signal="pressed" from="Credits/c/Panel/BackButton" to="." method="CreditsBackButton"]

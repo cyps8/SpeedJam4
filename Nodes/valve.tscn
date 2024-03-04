@@ -1,17 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://du7qln3jjng80"]
 
-[ext_resource type="Script" path="res://Scripts/Valve.gd" id="1_p1rdg"]
-[ext_resource type="Texture2D" uid="uid://dfhqmvhhkl1ep" path="res://Assets/Art/Tiles/Valve.png" id="2_2rd8t"]
-[ext_resource type="Texture2D" uid="uid://dt20rsiai7yo6" path="res://Assets/Art/Tiles/Valve_Interactable.png" id="2_xlm1m"]
-[ext_resource type="Theme" uid="uid://wsg6dbyy4h7y" path="res://Res/MainTheme.tres" id="4_phqmg"]
+[ext_resource type="Script" path="res://Scripts/Valve.gd" id="1_efu81"]
+[ext_resource type="Texture2D" uid="uid://dt20rsiai7yo6" path="res://Assets/Art/Tiles/Valve_Interactable.png" id="2_jpxkw"]
+[ext_resource type="Texture2D" uid="uid://dfhqmvhhkl1ep" path="res://Assets/Art/Tiles/Valve.png" id="3_7lot7"]
+[ext_resource type="Theme" uid="uid://wsg6dbyy4h7y" path="res://Res/MainTheme.tres" id="4_md5sb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_whkxl"]
 size = Vector2(64, 64)
 
-[node name="Valve" type="Area2D"]
+[node name="Valve" type="Area2D" groups=["ValveReset"]]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_p1rdg")
+script = ExtResource("1_efu81")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_whkxl")
@@ -19,12 +19,12 @@ shape = SubResource("RectangleShape2D_whkxl")
 [node name="SpriteInt" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(3, 3)
-texture = ExtResource("2_xlm1m")
+texture = ExtResource("2_jpxkw")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(3, 3)
-texture = ExtResource("2_2rd8t")
+texture = ExtResource("3_7lot7")
 
 [node name="TextInt" type="Label" parent="."]
 visible = false
@@ -32,7 +32,7 @@ offset_left = -132.0
 offset_top = -73.0
 offset_right = 131.0
 offset_bottom = -46.0
-theme = ExtResource("4_phqmg")
+theme = ExtResource("4_md5sb")
 theme_override_font_sizes/font_size = 30
 text = "PRESS E"
 horizontal_alignment = 1

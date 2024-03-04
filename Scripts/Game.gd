@@ -6,10 +6,14 @@ var gameActive = false
 
 var overFlowTime = 0.0
 
+var overFlowLimit = 40.0
+
 var drops: Array[TextureProgressBar] = []
 var hearts: Array[TextureRect] = []
 
 var respawnPos = Vector2(-485, -51)
+
+var currentHearts = 5
 
 signal overflow
 
@@ -20,13 +24,31 @@ func _ready():
 	for i in %Hearts.get_children():
 		hearts.append(i)
 
+func LoseHeart() -> bool:
+	currentHearts -= 1
+	hearts[currentHearts].visible = false
+	if currentHearts == 0:
+		LostAllHearts()
+		return true
+	return false
+
+func LostAllHearts():
+	gameActive = false
+	MusicPlayer.instance.PlaySong(MusicPlayer.Song.LOSE)
+	var tween = create_tween()
+	tween.tween_interval(2)
+	tween.tween_callback(Lose)
+	%Overflow.text = "DEATH!"
+	%YouLost.text = "YOU LOST ALL\n OF YOUR HEARTS\n AND YOU LOST :("
+
 func _process(_delta):
 	if !gameActive:
 		return
 
 	overFlowTime += _delta
 	UpdateDrops()
-	if overFlowTime > 50:
+	$WaterSounds.volume_db = linear_to_db(overFlowTime / overFlowLimit)
+	if overFlowTime > overFlowLimit:
 		OverFlow()
 
 	timer += _delta
@@ -66,13 +88,14 @@ func SetCheckpoint():
 	AudioPlayer.instance.PlaySound(5, AudioPlayer.SoundType.SFX)
 
 func UpdateDrops():
+	var overflowSection = overFlowLimit / 5
 	var currentFlow = overFlowTime
 	for d in drops:
-		if currentFlow > 10:
-			currentFlow -= 10
+		if currentFlow > overflowSection:
+			currentFlow -= overflowSection
 			d.value = 1
 		elif currentFlow > 0:
-			d.value = (currentFlow / 10)
+			d.value = (currentFlow / overflowSection)
 			currentFlow = 0
 		else:
 			d.value = 0
