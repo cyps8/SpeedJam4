@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://db74vvn0mvhi0" path="res://player.tscn" id="7_gnpyo"]
 [ext_resource type="PackedScene" uid="uid://d3jh1kqhr8ew" path="res://Nodes/crate.tscn" id="8_xgc7x"]
 [ext_resource type="PackedScene" uid="uid://du7qln3jjng80" path="res://valve.tscn" id="9_2mtob"]
-[ext_resource type="Texture2D" uid="uid://dnw3jk8kerjvm" path="res://Assets/Art/Tiles/Tileset_Sewer1.png" id="10_gyvpq"]
+[ext_resource type="Texture2D" uid="uid://tgu5sv8cw74j" path="res://Assets/Art/Tiles/Tileset_Sewer1.png" id="10_gyvpq"]
 [ext_resource type="Script" path="res://Scripts/Water.gd" id="11_ivbve"]
 [ext_resource type="Script" path="res://Scripts/WinArea.gd" id="12_qffhd"]
 [ext_resource type="Script" path="res://Scripts/WinScreen.gd" id="13_ia8t4"]

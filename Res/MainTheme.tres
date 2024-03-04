@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://wsg6dbyy4h7y"]
 
-[ext_resource type="FontFile" uid="uid://bg6ec4fc2s52b" path="res://Assets/Fonts/dogicapixel.ttf" id="1_1sagh"]
+[ext_resource type="FontFile" uid="uid://cyew0fosrmkvj" path="res://Assets/Fonts/dogicapixel.ttf" id="1_1sagh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86umn"]
 bg_color = Color(0.372549, 0.435294, 0.447059, 1)
