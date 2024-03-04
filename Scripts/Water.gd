@@ -18,6 +18,10 @@ func RaiseWater():
 	for waterfall in get_tree().get_nodes_in_group("Waterfall"):
 		waterfall.visible = true
 
+	for valve in get_tree().get_nodes_in_group("ValveReset"):
+		if !valve.is_in_group("End"):
+			valve.activated = false
+
 func _process(_delta):
 	%WaterSprite.position.y = position.y - 506
 

@@ -6,7 +6,7 @@ var gameActive = false
 
 var overFlowTime = 0.0
 
-var overFlowLimit = 50.0
+var overFlowLimit = 40.0
 
 var drops: Array[TextureProgressBar] = []
 var hearts: Array[TextureRect] = []
@@ -38,6 +38,7 @@ func LostAllHearts():
 	var tween = create_tween()
 	tween.tween_interval(2)
 	tween.tween_callback(Lose)
+	%Overflow.text = "DEATH!"
 	%YouLost.text = "YOU LOST ALL\n OF YOUR HEARTS\n AND YOU LOST :("
 
 func _process(_delta):
