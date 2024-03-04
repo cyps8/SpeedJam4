@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://du7qln3jjng80"]
+[gd_scene load_steps=6 format=3 uid="uid://du7qln3jjng80"]
 
 [ext_resource type="Script" path="res://Scripts/Valve.gd" id="1_p1rdg"]
 [ext_resource type="Texture2D" uid="uid://dfhqmvhhkl1ep" path="res://Assets/Art/Tiles/Valve.png" id="2_2rd8t"]
+[ext_resource type="Texture2D" uid="uid://dt20rsiai7yo6" path="res://Assets/Art/Tiles/Valve_Interactable.png" id="2_xlm1m"]
+[ext_resource type="Theme" uid="uid://wsg6dbyy4h7y" path="res://Res/MainTheme.tres" id="4_phqmg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_whkxl"]
 size = Vector2(64, 64)
@@ -14,10 +16,26 @@ script = ExtResource("1_p1rdg")
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_whkxl")
 
+[node name="SpriteInt" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(3, 3)
+texture = ExtResource("2_xlm1m")
+
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(3, 3)
 texture = ExtResource("2_2rd8t")
+
+[node name="TextInt" type="Label" parent="."]
+visible = false
+offset_left = -132.0
+offset_top = -73.0
+offset_right = 131.0
+offset_bottom = -46.0
+theme = ExtResource("4_phqmg")
+theme_override_font_sizes/font_size = 30
+text = "PRESS E"
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="playerEntered"]
 [connection signal="body_exited" from="." to="." method="playerExited"]

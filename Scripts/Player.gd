@@ -36,11 +36,13 @@ var firstDrop = true
 
 var rollCD = 0.0
 
+var valving = false
+
 func _ready():
 	$Sprite.play("idle")
 
 func _physics_process(delta):
-	inputs = %Game.gameActive
+	inputs = %Game.gameActive && !valving
 
 	var gravMult: float = 4.5
 
@@ -72,6 +74,7 @@ func _physics_process(delta):
 		if firstDrop:
 			firstDrop = false
 			%Game.gameActive = true
+			MusicPlayer.instance.PlaySong(MusicPlayer.Song.GAME)
 		if crouching && !uncrouch:
 			sliding = true
 
@@ -85,9 +88,12 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Jump") && !is_on_floor() && inputs:
 		preJump = 0.1
 
-	if ((Input.is_action_just_pressed("Jump") && ((is_on_floor() || coyoteTime > 0))) || (preJump > 0 && is_on_floor())) && (!rolling || coyoteTime > 0) && inputs:
+	if ((Input.is_action_just_pressed("Jump") && (((is_on_floor() || inWater) || coyoteTime > 0))) || (preJump > 0 && is_on_floor())) && (!rolling || coyoteTime > 0) && inputs:
 		AudioPlayer.instance.PlaySound(0, AudioPlayer.SoundType.SFX)
-		velocity.y = JUMP_VELOCITY
+		if inWater:
+			velocity.y = JUMP_VELOCITY / 1.3
+		else:
+			velocity.y = JUMP_VELOCITY
 		jumping = true
 		if crouching:
 			if sliding:
@@ -145,6 +151,9 @@ func _physics_process(delta):
 			tween.finished.connect(Callable(HideBar))
 			currentRollSpeed = rollSpeed
 
+	if inWater:
+		velocity.x = move_toward(velocity.x, 0, abs(velocity.x) * 0.5)
+
 	if abs(velocity.x) < 5:
 		velocity.x = 0
 
@@ -153,13 +162,33 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-	# for i in get_slide_collision_count():
-	# 	var col = get_slide_collision(i)
-	# 	if col.get_collider() is RigidBody2D:
-	# 		col.get_collider().apply_central_impulse(-col.get_normal() * 50)
+	for i in get_slide_collision_count():
+		var col = get_slide_collision(i)
+		if col.get_collider() is RigidBody2D:
+			col.get_collider().apply_central_impulse(-col.get_normal() * 4 * (velocity.length() / 100))
+
+func ValveInteract(pos: Vector2):
+	valving = true
+	position = pos
+	velocity = Vector2.ZERO
+	var tween = create_tween()
+	tween.tween_interval(2)
+	tween.finished.connect(Callable(EndValve))
+
+func EndValve():
+	valving = false
 
 func HideBar():
 	$RollBar.visible = false
+
+func CheckpointActivated():
+	$Checkpoint.position = Vector2(-112, -98)
+	$Checkpoint.visible = true
+	$Checkpoint.modulate.a = 1
+	var tween = create_tween()
+	tween.tween_property($Checkpoint, "modulate:a", 0, 0.5)
+	tween.parallel()
+	tween.tween_property($Checkpoint, "position", Vector2(-112, -175), 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 
 func _process(_delta):
 	if lastDirection > 0:
@@ -167,7 +196,9 @@ func _process(_delta):
 	else:
 		$Sprite.flip_h = true
 
-	if rolling:
+	if valving:
+		$Sprite.play("valving")
+	elif rolling:
 		$Sprite.play("rolling")
 	else:
 		if is_on_floor():
@@ -179,13 +210,14 @@ func _process(_delta):
 					$Sprite.speed_scale = abs(velocity.x) / maxRunSpeed * 2.5
 			else:
 				$Sprite.play("idle")
-				$Sprite.speed_scale = 1
 		else:
 			if velocity.y < 0:
 				$Sprite.play("jumping")
 			else:
 				$Sprite.play("falling")
 	
+	if $Sprite.animation != "walking":
+		$Sprite.speed_scale = 1
 
 	if !rolling:
 		$Sprite.rotation = 0

@@ -21,7 +21,7 @@ func _ready():
 
 func _OnChanged(_value: float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(busName), linear_to_db(_value))
-	#AudioPlayer.instance.PlaySound(2, AudioServer.get_bus_index(busName))
+	AudioPlayer.instance.PlaySound(6, AudioServer.get_bus_index(busName))
 
 func _process(_dt):
 	if !has_focus():
@@ -57,7 +57,7 @@ func _Focused():
 		scaleTween.stop()
 	scaleTween = create_tween()
 	scaleTween.tween_property(self, "scale", Vector2(1.1, 1.1), 0.2)
-	#AudioPlayer.instance.PlaySound(1, AudioPlayer.SoundType.SFX)
+	AudioPlayer.instance.PlaySound(7, AudioPlayer.SoundType.SFX)
 
 func _Unfocused():
 	if scaleTween:
