@@ -16,9 +16,9 @@ TO-DO (High):
 [] UI buttons
   [] MAIN MENU
     [~] Speed Plumber - Title Text
-    [~] Start - Button
-    [~] Options - Button
-    [~] Credits - Button
+    [x] Start - Button
+    [x] Options - Button
+    [x] Credits - Button
       [] Code: Snow<3
         ... itch.io?
       [] Art: Friendly Mimic
@@ -27,12 +27,12 @@ TO-DO (High):
       [] Music & SFX: Aenjo
         ... https://aenjo.itch.io/ (ask???)
         ... https://www.youtube.com/channel/UCE8AqII7ax9FV2mNaTUFWUg
-    [~] Quit - Button
+    [x] Quit - Button
   [] PAUSE
     [] Pause - Text
-    [] Resume - Button
-    [] Options - Button
-    [] Main Menu - Button
+    [x] Resume - Button
+    [x] Options - Button
+    [x] Menu - Button
 [] Spikes
 
 --------------------
