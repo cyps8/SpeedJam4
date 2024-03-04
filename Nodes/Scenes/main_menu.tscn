@@ -1,9 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://c76x5ojltri0v"]
+[gd_scene load_steps=8 format=3 uid="uid://c76x5ojltri0v"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_w28dh"]
 [ext_resource type="Theme" uid="uid://wsg6dbyy4h7y" path="res://Res/MainTheme.tres" id="2_ermwq"]
 [ext_resource type="TileSet" uid="uid://b14pwnmeoipd5" path="res://Res/Tilemap.tres" id="2_r0yb6"]
 [ext_resource type="Script" path="res://Scripts/MenuButton.gd" id="3_trer4"]
+[ext_resource type="Texture2D" uid="uid://c1rk6f4wjdv1k" path="res://Assets/Art/Enemies/Gator.png" id="5_828co"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svfxd"]
+atlas = ExtResource("5_828co")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cll8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svfxd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_w28dh")
@@ -19,40 +35,40 @@ theme = ExtResource("2_ermwq")
 
 [node name="StartButton" type="Button" parent="c"]
 layout_mode = 0
-offset_left = 831.0
-offset_top = 593.0
-offset_right = 1031.0
-offset_bottom = 643.0
+offset_left = 843.795
+offset_top = 595.0
+offset_right = 1043.8
+offset_bottom = 645.0
 theme_override_font_sizes/font_size = 30
 text = "START"
 script = ExtResource("3_trer4")
 
 [node name="CreditsButton" type="Button" parent="c"]
 layout_mode = 0
-offset_left = 829.0
-offset_top = 650.0
-offset_right = 1029.0
-offset_bottom = 700.0
+offset_left = 843.795
+offset_top = 656.18
+offset_right = 1043.8
+offset_bottom = 706.18
 theme_override_font_sizes/font_size = 30
 text = "CREDITS"
 script = ExtResource("3_trer4")
 
 [node name="OptionsButton" type="Button" parent="c"]
 layout_mode = 0
-offset_left = 830.0
-offset_top = 710.0
-offset_right = 1030.0
-offset_bottom = 760.0
+offset_left = 843.795
+offset_top = 718.64
+offset_right = 1043.8
+offset_bottom = 768.64
 theme_override_font_sizes/font_size = 30
 text = "OPTIONS"
 script = ExtResource("3_trer4")
 
 [node name="QuitButton" type="Button" parent="c"]
 layout_mode = 0
-offset_left = 830.0
-offset_top = 777.0
-offset_right = 1030.0
-offset_bottom = 827.0
+offset_left = 843.795
+offset_top = 779.0
+offset_right = 1043.8
+offset_bottom = 829.0
 theme_override_font_sizes/font_size = 30
 text = "QUIT"
 script = ExtResource("3_trer4")
@@ -61,9 +77,9 @@ disableForWeb = true
 
 [node name="Title" type="Label" parent="c"]
 layout_mode = 0
-offset_left = 422.0
+offset_left = 459.0
 offset_top = 308.0
-offset_right = 1453.0
+offset_right = 1490.0
 offset_bottom = 415.0
 theme_override_font_sizes/font_size = 67
 text = "SPEED PLUMBER"
@@ -134,13 +150,18 @@ text = "AENJO - MUSIC & SFX"
 
 [node name="BackButton" type="Button" parent="Credits/c/Panel"]
 layout_mode = 0
-offset_left = 281.0
-offset_top = 519.0
-offset_right = 481.0
-offset_bottom = 569.0
+offset_left = 297.0
+offset_top = 523.0
+offset_right = 497.0
+offset_bottom = 573.0
 theme_override_font_sizes/font_size = 30
 text = "BACK"
 script = ExtResource("3_trer4")
+
+[node name="Gator" type="AnimatedSprite2D" parent="."]
+position = Vector2(1653, 840)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_0cll8")
 
 [connection signal="pressed" from="c/StartButton" to="." method="StartButton"]
 [connection signal="pressed" from="c/CreditsButton" to="." method="CreditsButton"]

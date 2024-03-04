@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+class_name Floatable
+
 var inWater = false
 
 func EnterWater():

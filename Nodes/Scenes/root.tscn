@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c4ctxteki8oa2"]
+[gd_scene load_steps=26 format=3 uid="uid://c4ctxteki8oa2"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_yerf7"]
 [ext_resource type="Script" path="res://Scripts/OptionsMenu.gd" id="2_2uich"]
@@ -22,6 +22,9 @@
 [ext_resource type="AudioStream" uid="uid://b8lds2uee8vh8" path="res://Assets/Sounds/ui_click.wav" id="20_r40o8"]
 [ext_resource type="AudioStream" uid="uid://d3xdbx2d1o21i" path="res://Assets/Sounds/ui_hover.wav" id="21_7m4lj"]
 [ext_resource type="AudioStream" uid="uid://dydrp1rtgqafb" path="res://Assets/Sounds/ui_back.wav" id="22_kungp"]
+[ext_resource type="AudioStream" uid="uid://54xdu4m03il3" path="res://Assets/Sounds/gator_attack.wav" id="23_rxv20"]
+[ext_resource type="AudioStream" uid="uid://cmp86sr3ycjin" path="res://Assets/Sounds/player_death.wav" id="24_t07x3"]
+[ext_resource type="AudioStream" uid="uid://5j1vq68fd3c1" path="res://Assets/Sounds/player_hurt.wav" id="25_fovnh"]
 
 [node name="root" type="Node"]
 process_mode = 3
@@ -43,11 +46,18 @@ grow_vertical = 2
 theme = ExtResource("5_pc4jn")
 
 [node name="Panel" type="Panel" parent="OptionsMenu/c"]
-layout_mode = 0
-offset_left = 678.0
-offset_top = 206.0
-offset_right = 1296.0
-offset_bottom = 709.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -309.0
+offset_top = -251.5
+offset_right = 309.0
+offset_bottom = 251.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="OptionsMenu/c/Panel"]
 layout_mode = 0
@@ -131,6 +141,7 @@ text = "SFX"
 
 [node name="LoadingScreen" type="CanvasLayer" parent="."]
 layer = 20
+visible = false
 
 [node name="c" type="Control" parent="LoadingScreen"]
 layout_mode = 3
@@ -157,6 +168,6 @@ songs = Array[AudioStream]([ExtResource("8_2vm5q"), ExtResource("6_o83wj"), ExtR
 
 [node name="AudioPlayer" type="Node" parent="."]
 script = ExtResource("6_if2a6")
-sounds = Array[AudioStream]([ExtResource("7_m570w"), ExtResource("8_uv7k4"), ExtResource("9_5d4lr"), ExtResource("15_qehi5"), ExtResource("16_j8dve"), ExtResource("19_sfraw"), ExtResource("20_r40o8"), ExtResource("21_7m4lj"), ExtResource("22_kungp")])
+sounds = Array[AudioStream]([ExtResource("7_m570w"), ExtResource("8_uv7k4"), ExtResource("9_5d4lr"), ExtResource("15_qehi5"), ExtResource("16_j8dve"), ExtResource("19_sfraw"), ExtResource("20_r40o8"), ExtResource("21_7m4lj"), ExtResource("22_kungp"), ExtResource("23_rxv20"), ExtResource("24_t07x3"), ExtResource("25_fovnh")])
 
 [connection signal="pressed" from="OptionsMenu/c/Panel/Button" to="OptionsMenu" method="BackButton"]

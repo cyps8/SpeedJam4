@@ -13,6 +13,8 @@ var hearts: Array[TextureRect] = []
 
 var respawnPos = Vector2(-485, -51)
 
+var currentHearts = 5
+
 signal overflow
 
 func _ready():
@@ -21,6 +23,22 @@ func _ready():
 
 	for i in %Hearts.get_children():
 		hearts.append(i)
+
+func LoseHeart() -> bool:
+	currentHearts -= 1
+	hearts[currentHearts].visible = false
+	if currentHearts == 0:
+		LostAllHearts()
+		return true
+	return false
+
+func LostAllHearts():
+	gameActive = false
+	MusicPlayer.instance.PlaySong(MusicPlayer.Song.LOSE)
+	var tween = create_tween()
+	tween.tween_interval(2)
+	tween.tween_callback(Lose)
+	%YouLost.text = "YOU LOST ALL\n OF YOUR HEARTS\n AND YOU LOST :("
 
 func _process(_delta):
 	if !gameActive:

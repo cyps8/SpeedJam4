@@ -30,6 +30,7 @@ var slideJump = false
 var uncrouch = false
 
 var inWater = false
+var eaten = false
 
 var inputs = false
 var firstDrop = true
@@ -41,8 +42,27 @@ var valving = false
 func _ready():
 	$Sprite.play("idle")
 
+func Eaten():
+	if eaten:
+		return
+	eaten = true
+	if !%Game.LoseHeart():
+		var tween = create_tween()
+		tween.tween_interval(1)
+		tween.finished.connect(Callable(Respawn))
+	AudioPlayer.instance.PlaySound(11, AudioPlayer.SoundType.SFX)
+	$Sprite.visible = false
+	$RollBar.visible = false
+
+func Respawn():
+	AudioPlayer.instance.PlaySound(10, AudioPlayer.SoundType.SFX)
+	position = %Game.respawnPos
+	$Sprite.visible = true
+	%Camera.position.x = clamp(position.x, 0, INF)
+	eaten = false
+
 func _physics_process(delta):
-	inputs = %Game.gameActive && !valving
+	inputs = %Game.gameActive && !valving && !eaten
 
 	var gravMult: float = 4.5
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://tqhlq2q0yret"]
+[gd_scene load_steps=36 format=3 uid="uid://tqhlq2q0yret"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_i4kfv"]
 [ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="2_yhb5q"]
@@ -16,8 +16,10 @@
 [ext_resource type="Script" path="res://Scripts/WinScreen.gd" id="13_ia8t4"]
 [ext_resource type="Texture2D" uid="uid://cfx5tcuywkqc" path="res://Assets/Art/HUD/Health_Heart_Icon.png" id="15_tut7x"]
 [ext_resource type="Texture2D" uid="uid://enwtsnmfelmq" path="res://Assets/Art/HUD/Overflow_Drop_Icon_Empty.png" id="16_he7dy"]
+[ext_resource type="Texture2D" uid="uid://bjms0w6cagogy" path="res://Assets/Art/HUD/Health_Heart_Icon_Empty.png" id="16_k4tqa"]
 [ext_resource type="Texture2D" uid="uid://bsogdhg31rhss" path="res://Assets/Art/HUD/Overflow_Drop_Icon.png" id="17_bcgqk"]
 [ext_resource type="AudioStream" uid="uid://cukxhaq36bpeh" path="res://Assets/Sounds/water.ogg" id="18_pwgll"]
+[ext_resource type="PackedScene" uid="uid://rde6hjb8ni5f" path="res://Nodes/gator.tscn" id="19_fg86w"]
 
 [sub_resource type="Gradient" id="Gradient_1w3a4"]
 interpolation_mode = 1
@@ -164,17 +166,24 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.415686)
 
 [node name="Panel" type="Panel" parent="PauseMenu/c"]
-layout_mode = 0
-offset_left = 878.0
-offset_top = 387.0
-offset_right = 1101.0
-offset_bottom = 693.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.5
+offset_top = -176.5
+offset_right = 132.5
+offset_bottom = 176.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="PauseMenu/c/Panel"]
 layout_mode = 0
-offset_left = 25.0
+offset_left = 49.815
 offset_top = 10.0
-offset_right = 200.0
+offset_right = 224.815
 offset_bottom = 65.0
 theme_override_font_sizes/font_size = 40
 text = "PAUSE"
@@ -182,9 +191,9 @@ horizontal_alignment = 1
 
 [node name="ButtonResume" type="Button" parent="PauseMenu/c/Panel"]
 layout_mode = 0
-offset_left = 10.0
+offset_left = 34.55
 offset_top = 72.0
-offset_right = 210.0
+offset_right = 234.55
 offset_bottom = 137.0
 theme_override_font_sizes/font_size = 25
 text = "RESUME"
@@ -193,20 +202,20 @@ isExitButton = true
 
 [node name="ButtonOptions" type="Button" parent="PauseMenu/c/Panel"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 149.0
-offset_right = 210.0
-offset_bottom = 214.0
+offset_left = 34.55
+offset_top = 156.69
+offset_right = 234.55
+offset_bottom = 221.69
 theme_override_font_sizes/font_size = 25
 text = "OPTIONS"
 script = ExtResource("4_qynbc")
 
 [node name="ButtonMainMenu" type="Button" parent="PauseMenu/c/Panel"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 224.0
-offset_right = 210.0
-offset_bottom = 289.0
+offset_left = 34.55
+offset_top = 242.18
+offset_right = 234.55
+offset_bottom = 307.18
 theme_override_font_sizes/font_size = 25
 text = "MAIN MENU"
 script = ExtResource("4_qynbc")
@@ -217,6 +226,7 @@ process_mode = 1
 script = ExtResource("4_edjqb")
 
 [node name="Camera" type="Camera2D" parent="Game"]
+unique_name_in_owner = true
 script = ExtResource("3_oqatl")
 
 [node name="WaterSprite" type="Sprite2D" parent="Game/Camera"]
@@ -450,6 +460,7 @@ text = "OVERFLOW!"
 horizontal_alignment = 1
 
 [node name="YouLost" type="Label" parent="Game/LoseScreen/c/Panel"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
 offset_top = 182.0
@@ -540,6 +551,38 @@ layout_mode = 2
 texture = ExtResource("15_tut7x")
 expand_mode = 2
 
+[node name="HeartsEmpty" type="HBoxContainer" parent="Game/HUD/c"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 72.0
+offset_right = 584.0
+offset_bottom = 120.0
+
+[node name="Heart" type="TextureRect" parent="Game/HUD/c/HeartsEmpty"]
+layout_mode = 2
+texture = ExtResource("16_k4tqa")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="Game/HUD/c/HeartsEmpty"]
+layout_mode = 2
+texture = ExtResource("16_k4tqa")
+expand_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="Game/HUD/c/HeartsEmpty"]
+layout_mode = 2
+texture = ExtResource("16_k4tqa")
+expand_mode = 2
+
+[node name="Heart4" type="TextureRect" parent="Game/HUD/c/HeartsEmpty"]
+layout_mode = 2
+texture = ExtResource("16_k4tqa")
+expand_mode = 2
+
+[node name="Heart5" type="TextureRect" parent="Game/HUD/c/HeartsEmpty"]
+layout_mode = 2
+texture = ExtResource("16_k4tqa")
+expand_mode = 2
+
 [node name="Drops" type="HBoxContainer" parent="Game/HUD/c"]
 unique_name_in_owner = true
 layout_mode = 0
@@ -609,6 +652,9 @@ stream = ExtResource("18_pwgll")
 volume_db = -80.0
 autoplay = true
 bus = &"SFX"
+
+[node name="Gator" parent="." instance=ExtResource("19_fg86w")]
+position = Vector2(6785, 252)
 
 [connection signal="pressed" from="PauseMenu/c/Panel/ButtonResume" to="PauseMenu" method="ResumeButton"]
 [connection signal="pressed" from="PauseMenu/c/Panel/ButtonOptions" to="PauseMenu" method="OptionsButton"]
