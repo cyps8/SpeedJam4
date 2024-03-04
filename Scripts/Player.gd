@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const JUMP_VELOCITY = -800.0
-var maxRunSpeed = 400
-var speedIncrease = 100
+const JUMP_VELOCITY = -900.0
+var maxRunSpeed = 600
+var speedIncrease = 200
 
 var rollSpeed = 800
 var currentRollSpeed = 800
@@ -27,47 +27,66 @@ var sliding = false
 var crouchJump = false
 var slideJump = false
 
+var uncrouch = false
+
+var inWater = false
+
+var inputs = false
+var firstDrop = true
+
+var rollCD = 0.0
+
 func _ready():
 	$Sprite.play("idle")
 
 func _physics_process(delta):
-	
-	var gravMult: float = 3.5
+	inputs = %Game.gameActive
 
-	if Input.is_action_pressed("Crouch"):
+	var gravMult: float = 4.5
+
+	if Input.is_action_pressed("Crouch") && inputs:
 		crouching = true
 		maxRunSpeed = 100
 	else:
 		crouching = false
 		maxRunSpeed = 400
+		uncrouch = false
 
 	if jumping:
 		if !Input.is_action_pressed("Jump") || is_on_floor() || velocity.y > 0:
 			jumping = false
 			crouchJump = false
 			slideJump = false
+			uncrouch = true
 		else:
 			if crouchJump:
-				gravMult = 1.5
+				gravMult = 1.4
 			else:
 				gravMult = 2.0
 
 	if !is_on_floor():
 		velocity.y += gravity * delta * gravMult
 		sliding = false
-	elif is_on_floor() && wasInAir && crouching:
-		sliding = true
+	elif is_on_floor() && wasInAir:
+		AudioPlayer.instance.PlaySound(1, AudioPlayer.SoundType.SFX)
+		if firstDrop:
+			firstDrop = false
+			%Game.gameActive = true
+		if crouching && !uncrouch:
+			sliding = true
 
 	coyoteTime -= delta
 	preJump -= delta
+	rollCD -= delta
 
 	if wasOnFloor && !is_on_floor() && velocity.y >= 0:
 		coyoteTime = 0.1
 
-	if Input.is_action_just_pressed("Jump") && !is_on_floor():
+	if Input.is_action_just_pressed("Jump") && !is_on_floor() && inputs:
 		preJump = 0.1
 
-	if ((Input.is_action_just_pressed("Jump") && ((is_on_floor() || coyoteTime > 0))) || (preJump > 0 && is_on_floor())) && (!rolling || coyoteTime > 0):
+	if ((Input.is_action_just_pressed("Jump") && ((is_on_floor() || coyoteTime > 0))) || (preJump > 0 && is_on_floor())) && (!rolling || coyoteTime > 0) && inputs:
+		AudioPlayer.instance.PlaySound(0, AudioPlayer.SoundType.SFX)
 		velocity.y = JUMP_VELOCITY
 		jumping = true
 		if crouching:
@@ -77,7 +96,8 @@ func _physics_process(delta):
 			else:
 				crouchJump = true
 
-	if Input.is_action_just_pressed("Roll") && !rolling:
+	if Input.is_action_just_pressed("Roll") && !rolling && rollCD <= 0 && inputs:
+		AudioPlayer.instance.PlaySound(2, AudioPlayer.SoundType.SFX)
 		rolling = true
 		if is_on_floor():
 			coyoteTime = 0.1
@@ -88,6 +108,8 @@ func _physics_process(delta):
 	if !rolling:
 		var preserve = false
 		var direction = Input.get_axis("Left", "Right")
+		if !inputs:
+			direction = 0
 		if direction:
 			if sliding:
 				if !(velocity.x > 0 && direction > 0 || velocity.x < 0 && direction < 0) || !crouching:
@@ -115,6 +137,12 @@ func _physics_process(delta):
 		rollTimer -= delta
 		if rollTimer <= 0:
 			rolling = false
+			rollCD = 0.5
+			$RollBar.visible = true
+			var tween = create_tween()
+			$RollBar.value = 0
+			tween.tween_property($RollBar, "value", 1, 0.5)
+			tween.finished.connect(Callable(HideBar))
 			currentRollSpeed = rollSpeed
 
 	if abs(velocity.x) < 5:
@@ -124,6 +152,14 @@ func _physics_process(delta):
 	wasInAir = !is_on_floor()
 
 	move_and_slide()
+
+	# for i in get_slide_collision_count():
+	# 	var col = get_slide_collision(i)
+	# 	if col.get_collider() is RigidBody2D:
+	# 		col.get_collider().apply_central_impulse(-col.get_normal() * 50)
+
+func HideBar():
+	$RollBar.visible = false
 
 func _process(_delta):
 	if lastDirection > 0:
@@ -136,8 +172,11 @@ func _process(_delta):
 	else:
 		if is_on_floor():
 			if velocity.x != 0:
-				$Sprite.play("walking")
-				$Sprite.speed_scale = abs(velocity.x) / maxRunSpeed * 2.5
+				if sliding:
+					$Sprite.play("sliding")
+				else:
+					$Sprite.play("walking")
+					$Sprite.speed_scale = abs(velocity.x) / maxRunSpeed * 2.5
 			else:
 				$Sprite.play("idle")
 				$Sprite.speed_scale = 1
@@ -151,7 +190,7 @@ func _process(_delta):
 	if !rolling:
 		$Sprite.rotation = 0
 
-	if crouching && is_on_floor() && !rolling:
+	if crouching && is_on_floor() && !rolling && !sliding:
 		$Sprite.scale = Vector2(3, 1.5)
 		$Sprite.offset = Vector2(0, 16)
 		if sliding:
@@ -161,3 +200,10 @@ func _process(_delta):
 	else:
 		$Sprite.scale = Vector2(3, 3)
 		$Sprite.offset = Vector2(0, 0)
+
+func EnterWater():
+	inWater = true
+	AudioPlayer.instance.PlaySound(4, AudioPlayer.SoundType.SFX)
+
+func ExitWater():
+	inWater = false

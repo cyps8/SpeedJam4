@@ -1,10 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4ctxteki8oa2"]
+[gd_scene load_steps=19 format=3 uid="uid://c4ctxteki8oa2"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_yerf7"]
 [ext_resource type="Script" path="res://Scripts/OptionsMenu.gd" id="2_2uich"]
 [ext_resource type="PackedScene" uid="uid://tqhlq2q0yret" path="res://Nodes/Scenes/game.tscn" id="2_qi31i"]
 [ext_resource type="PackedScene" uid="uid://c76x5ojltri0v" path="res://Nodes/Scenes/main_menu.tscn" id="3_p2peg"]
 [ext_resource type="Theme" uid="uid://wsg6dbyy4h7y" path="res://Res/MainTheme.tres" id="5_pc4jn"]
+[ext_resource type="Script" path="res://Scripts/MenuButton.gd" id="6_f48qa"]
+[ext_resource type="Script" path="res://Scripts/AudioPlayer.gd" id="6_if2a6"]
+[ext_resource type="AudioStream" uid="uid://67qqk082w764" path="res://Assets/Music/main_theme.ogg" id="6_o83wj"]
+[ext_resource type="Script" path="res://Scripts/VolumeSlider.gd" id="6_r2gwm"]
+[ext_resource type="AudioStream" uid="uid://5x33mx0jpw87" path="res://Assets/Sounds/jump.wav" id="7_m570w"]
+[ext_resource type="Script" path="res://Scripts/MusicPlayer.gd" id="7_y1t4t"]
+[ext_resource type="AudioStream" uid="uid://dc1fdob7nih22" path="res://Assets/Music/menu_theme.ogg" id="8_2vm5q"]
+[ext_resource type="AudioStream" uid="uid://nc56ajbpipwp" path="res://Assets/Sounds/land.wav" id="8_uv7k4"]
+[ext_resource type="AudioStream" uid="uid://cpcdexflakr7g" path="res://Assets/Sounds/roll.wav" id="9_5d4lr"]
+[ext_resource type="AudioStream" uid="uid://5u4n0vqhuj5r" path="res://Assets/Music/jingle_win.ogg" id="9_prg31"]
+[ext_resource type="AudioStream" uid="uid://c6nyqx0381wbv" path="res://Assets/Music/jingle_lose.ogg" id="10_485he"]
+[ext_resource type="AudioStream" uid="uid://7tcq81yvfxjp" path="res://Assets/Sounds/valve.wav" id="15_qehi5"]
+[ext_resource type="AudioStream" uid="uid://c02kgd54jiu1t" path="res://Assets/Sounds/splash.wav" id="16_j8dve"]
 
 [node name="root" type="Node"]
 process_mode = 3
@@ -27,16 +40,16 @@ theme = ExtResource("5_pc4jn")
 
 [node name="Panel" type="Panel" parent="OptionsMenu/c"]
 layout_mode = 0
-offset_left = 770.0
-offset_top = 314.0
-offset_right = 1209.0
+offset_left = 678.0
+offset_top = 206.0
+offset_right = 1296.0
 offset_bottom = 709.0
 
 [node name="Label" type="Label" parent="OptionsMenu/c/Panel"]
 layout_mode = 0
-offset_left = 104.0
+offset_left = 180.0
 offset_top = 19.0
-offset_right = 325.0
+offset_right = 415.0
 offset_bottom = 91.0
 theme_override_font_sizes/font_size = 40
 text = "OPTIONS"
@@ -44,16 +57,75 @@ horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="OptionsMenu/c/Panel"]
 layout_mode = 0
-offset_left = 122.0
-offset_top = 303.0
-offset_right = 301.0
-offset_bottom = 363.0
+offset_left = 196.0
+offset_top = 425.0
+offset_right = 375.0
+offset_bottom = 485.0
 theme_override_font_sizes/font_size = 30
 text = "BACK"
+script = ExtResource("6_f48qa")
+
+[node name="Master" type="HSlider" parent="OptionsMenu/c/Panel"]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 144.0
+offset_right = 546.0
+offset_bottom = 209.0
+max_value = 1.0
+step = 0.1
+script = ExtResource("6_r2gwm")
+
+[node name="Label" type="Label" parent="OptionsMenu/c/Panel/Master"]
+layout_mode = 0
+offset_left = -183.0
+offset_top = 16.0
+offset_right = -97.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 30
+text = "MASTER"
+
+[node name="Music" type="HSlider" parent="OptionsMenu/c/Panel"]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 219.0
+offset_right = 546.0
+offset_bottom = 284.0
+max_value = 1.0
+step = 0.1
+script = ExtResource("6_r2gwm")
+busName = "Music"
+
+[node name="Label" type="Label" parent="OptionsMenu/c/Panel/Music"]
+layout_mode = 0
+offset_left = -183.0
+offset_top = 16.0
+offset_right = -97.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 30
+text = "MUSIC"
+
+[node name="SFX" type="HSlider" parent="OptionsMenu/c/Panel"]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 294.0
+offset_right = 546.0
+offset_bottom = 359.0
+max_value = 1.0
+step = 0.1
+script = ExtResource("6_r2gwm")
+busName = "SFX"
+
+[node name="Label" type="Label" parent="OptionsMenu/c/Panel/SFX"]
+layout_mode = 0
+offset_left = -183.0
+offset_top = 16.0
+offset_right = -97.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 30
+text = "SFX"
 
 [node name="LoadingScreen" type="CanvasLayer" parent="."]
 layer = 20
-visible = false
 
 [node name="c" type="Control" parent="LoadingScreen"]
 layout_mode = 3
@@ -71,5 +143,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
+bus = &"Music"
+script = ExtResource("7_y1t4t")
+songs = Array[AudioStream]([ExtResource("8_2vm5q"), ExtResource("6_o83wj"), ExtResource("9_prg31"), ExtResource("10_485he")])
+
+[node name="AudioPlayer" type="Node" parent="."]
+script = ExtResource("6_if2a6")
+sounds = Array[AudioStream]([ExtResource("7_m570w"), ExtResource("8_uv7k4"), ExtResource("9_5d4lr"), ExtResource("15_qehi5"), ExtResource("16_j8dve")])
 
 [connection signal="pressed" from="OptionsMenu/c/Panel/Button" to="OptionsMenu" method="BackButton"]
