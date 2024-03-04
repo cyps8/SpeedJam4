@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://wsg6dbyy4h7y" path="res://Res/MainTheme.tres" id="3_kulip"]
 [ext_resource type="Script" path="res://Scripts/LevelCam.gd" id="3_oqatl"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="3_q5ueo"]
-[ext_resource type="Texture2D" uid="uid://8cg21pq3fxgx" path="res://Assets/Art/Player/Player.png" id="4_0wq4y"]
+[ext_resource type="Texture2D" uid="uid://nfk7ap6tbxif" path="res://Assets/Art/Player/Player.png" id="4_0wq4y"]
 [ext_resource type="TileSet" uid="uid://b14pwnmeoipd5" path="res://Res/Tilemap.tres" id="4_ek4l6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nur2u"]
