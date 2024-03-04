@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://du7qln3jjng80"]
+
+[ext_resource type="Script" path="res://Scripts/Valve.gd" id="1_p1rdg"]
+[ext_resource type="Texture2D" uid="uid://dfhqmvhhkl1ep" path="res://Assets/Art/Tiles/Valve.png" id="2_2rd8t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_whkxl"]
+size = Vector2(64, 64)
+
+[node name="Valve" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_p1rdg")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_whkxl")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("2_2rd8t")
+
+[connection signal="body_entered" from="." to="." method="playerEntered"]
+[connection signal="body_exited" from="." to="." method="playerExited"]

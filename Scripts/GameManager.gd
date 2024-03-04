@@ -13,6 +13,9 @@ func _ready():
 	instance = self
 
 func TogglePause():
+	if !%Game.gameActive:
+		return
+		
 	paused = !paused
 	if paused:
 		get_tree().paused = true
