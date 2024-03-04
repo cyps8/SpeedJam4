@@ -17,3 +17,6 @@ func _ready():
 func PlaySong(song: Song = Song.MENU) -> void:
 	stream = songs[song]
 	play()
+
+func StopSong() -> void:
+	stop()

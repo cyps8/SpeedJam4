@@ -47,6 +47,7 @@ theme_override_font_sizes/font_size = 30
 text = "QUIT"
 script = ExtResource("3_trer4")
 isExitButton = true
+disableForWeb = true
 
 [node name="Title" type="Label" parent="c"]
 layout_mode = 0

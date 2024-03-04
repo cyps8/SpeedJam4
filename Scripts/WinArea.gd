@@ -5,7 +5,7 @@ var active = false
 var activated = false
 
 func PlayerEntered(_body):
-	if active && !activated:
+	if active && !activated && %Game.gameActive:
 		activated = true
 		%Game.Win()
 

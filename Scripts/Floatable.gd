@@ -4,6 +4,7 @@ var inWater = false
 
 func EnterWater():
 	inWater = true
+	gravity_scale = 0.5
 
 func ExitWater():
 	inWater = false

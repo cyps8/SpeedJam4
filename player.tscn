@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://db74vvn0mvhi0"]
+[gd_scene load_steps=38 format=3 uid="uid://db74vvn0mvhi0"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_yg0ai"]
 [ext_resource type="Texture2D" uid="uid://8cg21pq3fxgx" path="res://Assets/Art/Player/Player.png" id="2_dy21p"]
+[ext_resource type="Theme" uid="uid://wsg6dbyy4h7y" path="res://Res/MainTheme.tres" id="3_nhj6m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nur2u"]
 size = Vector2(32, 80)
@@ -65,6 +66,34 @@ region = Rect2(736, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_r3aju"]
 atlas = ExtResource("2_dy21p")
 region = Rect2(896, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccjfs"]
+atlas = ExtResource("2_dy21p")
+region = Rect2(928, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rot7k"]
+atlas = ExtResource("2_dy21p")
+region = Rect2(960, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vu7f8"]
+atlas = ExtResource("2_dy21p")
+region = Rect2(992, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_febn0"]
+atlas = ExtResource("2_dy21p")
+region = Rect2(1024, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8bdi"]
+atlas = ExtResource("2_dy21p")
+region = Rect2(1056, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kimrw"]
+atlas = ExtResource("2_dy21p")
+region = Rect2(1088, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fexby"]
+atlas = ExtResource("2_dy21p")
+region = Rect2(1120, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3pfho"]
 atlas = ExtResource("2_dy21p")
@@ -172,6 +201,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ccjfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rot7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vu7f8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_febn0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8bdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kimrw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fexby")
+}],
+"loop": true,
+"name": &"valving",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_3pfho")
 }, {
 "duration": 1.0,
@@ -222,7 +277,8 @@ shape = SubResource("RectangleShape2D_nur2u")
 z_index = 2
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_1n84n")
-animation = &"idle"
+animation = &"valving"
+frame_progress = 0.128628
 
 [node name="RollBar" type="TextureProgressBar" parent="."]
 visible = false
@@ -234,3 +290,13 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 texture_progress = SubResource("GradientTexture2D_2l7t3")
+
+[node name="Checkpoint" type="Label" parent="."]
+visible = false
+offset_left = -112.0
+offset_top = -98.0
+offset_right = 112.0
+offset_bottom = -74.0
+theme = ExtResource("3_nhj6m")
+text = "CHECKPOINT!"
+horizontal_alignment = 1

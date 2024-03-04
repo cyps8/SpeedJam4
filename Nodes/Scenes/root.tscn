@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c4ctxteki8oa2"]
+[gd_scene load_steps=20 format=3 uid="uid://c4ctxteki8oa2"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_yerf7"]
 [ext_resource type="Script" path="res://Scripts/OptionsMenu.gd" id="2_2uich"]
@@ -7,17 +7,18 @@
 [ext_resource type="Theme" uid="uid://wsg6dbyy4h7y" path="res://Res/MainTheme.tres" id="5_pc4jn"]
 [ext_resource type="Script" path="res://Scripts/MenuButton.gd" id="6_f48qa"]
 [ext_resource type="Script" path="res://Scripts/AudioPlayer.gd" id="6_if2a6"]
-[ext_resource type="AudioStream" uid="uid://dthdb1ippeuh6" path="res://Assets/Music/main_theme.ogg" id="6_o83wj"]
+[ext_resource type="AudioStream" uid="uid://67qqk082w764" path="res://Assets/Music/main_theme.ogg" id="6_o83wj"]
 [ext_resource type="Script" path="res://Scripts/VolumeSlider.gd" id="6_r2gwm"]
-[ext_resource type="AudioStream" uid="uid://ewlqgrmbvt68" path="res://Assets/Sounds/jump.wav" id="7_m570w"]
+[ext_resource type="AudioStream" uid="uid://5x33mx0jpw87" path="res://Assets/Sounds/jump.wav" id="7_m570w"]
 [ext_resource type="Script" path="res://Scripts/MusicPlayer.gd" id="7_y1t4t"]
-[ext_resource type="AudioStream" uid="uid://bbjlx1225102c" path="res://Assets/Music/menu_theme.ogg" id="8_2vm5q"]
-[ext_resource type="AudioStream" uid="uid://clk1ehtbklp07" path="res://Assets/Sounds/land.wav" id="8_uv7k4"]
-[ext_resource type="AudioStream" uid="uid://bcjd0x8j5iygl" path="res://Assets/Sounds/roll.wav" id="9_5d4lr"]
-[ext_resource type="AudioStream" uid="uid://b55fwuxobkj0v" path="res://Assets/Music/jingle_win.ogg" id="9_prg31"]
-[ext_resource type="AudioStream" uid="uid://ca3ny3dytwed7" path="res://Assets/Music/jingle_lose.ogg" id="10_485he"]
-[ext_resource type="AudioStream" uid="uid://cep4gn7qx6gbd" path="res://Assets/Sounds/valve.wav" id="15_qehi5"]
-[ext_resource type="AudioStream" uid="uid://wpnoachqtepw" path="res://Assets/Sounds/splash.wav" id="16_j8dve"]
+[ext_resource type="AudioStream" uid="uid://dc1fdob7nih22" path="res://Assets/Music/menu_theme.ogg" id="8_2vm5q"]
+[ext_resource type="AudioStream" uid="uid://nc56ajbpipwp" path="res://Assets/Sounds/land.wav" id="8_uv7k4"]
+[ext_resource type="AudioStream" uid="uid://cpcdexflakr7g" path="res://Assets/Sounds/roll.wav" id="9_5d4lr"]
+[ext_resource type="AudioStream" uid="uid://5u4n0vqhuj5r" path="res://Assets/Music/jingle_win.ogg" id="9_prg31"]
+[ext_resource type="AudioStream" uid="uid://c6nyqx0381wbv" path="res://Assets/Music/jingle_lose.ogg" id="10_485he"]
+[ext_resource type="AudioStream" uid="uid://7tcq81yvfxjp" path="res://Assets/Sounds/valve.wav" id="15_qehi5"]
+[ext_resource type="AudioStream" uid="uid://c02kgd54jiu1t" path="res://Assets/Sounds/splash.wav" id="16_j8dve"]
+[ext_resource type="AudioStream" uid="uid://dh14eo6q65num" path="res://Assets/Sounds/collect_coin.wav" id="19_sfraw"]
 
 [node name="root" type="Node"]
 process_mode = 3
@@ -152,6 +153,6 @@ songs = Array[AudioStream]([ExtResource("8_2vm5q"), ExtResource("6_o83wj"), ExtR
 
 [node name="AudioPlayer" type="Node" parent="."]
 script = ExtResource("6_if2a6")
-sounds = Array[AudioStream]([ExtResource("7_m570w"), ExtResource("8_uv7k4"), ExtResource("9_5d4lr"), ExtResource("15_qehi5"), ExtResource("16_j8dve")])
+sounds = Array[AudioStream]([ExtResource("7_m570w"), ExtResource("8_uv7k4"), ExtResource("9_5d4lr"), ExtResource("15_qehi5"), ExtResource("16_j8dve"), ExtResource("19_sfraw")])
 
 [connection signal="pressed" from="OptionsMenu/c/Panel/Button" to="OptionsMenu" method="BackButton"]

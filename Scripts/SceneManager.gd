@@ -43,7 +43,7 @@ func ChangeScene(newScene: Scene):
 		MusicPlayer.instance.PlaySong(MusicPlayer.Song.MENU)
 	elif newScene == Scene.GAME:
 		currentPackedScene = gameScene
-		MusicPlayer.instance.PlaySong(MusicPlayer.Song.GAME)
+		MusicPlayer.instance.StopSong()
 
 	add_child(loadingScreenRef)
 		
