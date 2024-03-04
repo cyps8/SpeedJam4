@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqc5t4sl0p2jb"]
 
 [ext_resource type="Script" path="res://Scripts/Floatable.gd" id="1_uhf3o"]
-[ext_resource type="Texture2D" uid="uid://gdp38frvngeu" path="res://Assets/Art/Tiles/Debris.png" id="2_m1yvn"]
+[ext_resource type="Texture2D" uid="uid://6iu3onokfxlr" path="res://Assets/Art/Tiles/Debris.png" id="2_m1yvn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hl6w6"]
 size = Vector2(96, 48)

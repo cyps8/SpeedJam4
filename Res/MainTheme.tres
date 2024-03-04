@@ -1,10 +1,10 @@
 [gd_resource type="Theme" load_steps=10 format=3 uid="uid://wsg6dbyy4h7y"]
 
-[ext_resource type="Texture2D" uid="uid://5f7adbyq64ay" path="res://Assets/Art/UI/Button_Generic2.png" id="1_3b6rc"]
-[ext_resource type="Texture2D" uid="uid://ggkel0rvsybc" path="res://Assets/Art/UI/Button_Generic1.png" id="1_8somd"]
-[ext_resource type="FontFile" uid="uid://btpp4gnihj5ir" path="res://Assets/Fonts/Xolonium-Regular.otf" id="1_dqkdx"]
-[ext_resource type="Texture2D" uid="uid://b8f2rhuxad0h7" path="res://Assets/Art/UI/Button_Generic3.png" id="3_egbw4"]
-[ext_resource type="Texture2D" uid="uid://dnwcep6t18s57" path="res://Assets/Art/UI/Panel.png" id="4_xs0jp"]
+[ext_resource type="Texture2D" uid="uid://dpf7pxbupmfdl" path="res://Assets/Art/UI/Button_Generic2.png" id="1_3b6rc"]
+[ext_resource type="Texture2D" uid="uid://d17l0anah3ots" path="res://Assets/Art/UI/Button_Generic1.png" id="1_8somd"]
+[ext_resource type="FontFile" uid="uid://b2bjoeur4a4e6" path="res://Assets/Fonts/Xolonium-Regular.otf" id="1_dqkdx"]
+[ext_resource type="Texture2D" uid="uid://rkosuc88oev5" path="res://Assets/Art/UI/Button_Generic3.png" id="3_egbw4"]
+[ext_resource type="Texture2D" uid="uid://cowep5j6y346y" path="res://Assets/Art/UI/Panel.png" id="4_xs0jp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3a7g4"]
 texture = ExtResource("1_3b6rc")

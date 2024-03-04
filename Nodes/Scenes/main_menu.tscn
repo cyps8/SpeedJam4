@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://wsg6dbyy4h7y" path="res://Res/MainTheme.tres" id="2_ermwq"]
 [ext_resource type="TileSet" uid="uid://b14pwnmeoipd5" path="res://Res/Tilemap.tres" id="2_r0yb6"]
 [ext_resource type="Script" path="res://Scripts/MenuButton.gd" id="3_trer4"]
-[ext_resource type="Texture2D" uid="uid://c1rk6f4wjdv1k" path="res://Assets/Art/Enemies/Gator.png" id="5_828co"]
+[ext_resource type="Texture2D" uid="uid://b53lx84pax43n" path="res://Assets/Art/Enemies/Gator.png" id="5_828co"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_svfxd"]
 atlas = ExtResource("5_828co")

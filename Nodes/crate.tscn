@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3jh1kqhr8ew"]
 
 [ext_resource type="Script" path="res://Scripts/Floatable.gd" id="1_h1tlb"]
-[ext_resource type="Texture2D" uid="uid://dy24s8sebr1m1" path="res://Assets/Art/Tiles/Crate.png" id="1_kbeqy"]
+[ext_resource type="Texture2D" uid="uid://d0mqjb28qd0h6" path="res://Assets/Art/Tiles/Crate.png" id="1_kbeqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hl6w6"]
 size = Vector2(96, 96)
