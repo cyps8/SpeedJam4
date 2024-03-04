@@ -91,7 +91,7 @@ func _physics_process(delta):
 	if ((Input.is_action_just_pressed("Jump") && (((is_on_floor() || inWater) || coyoteTime > 0))) || (preJump > 0 && is_on_floor())) && (!rolling || coyoteTime > 0) && inputs:
 		AudioPlayer.instance.PlaySound(0, AudioPlayer.SoundType.SFX)
 		if inWater:
-			velocity.y = JUMP_VELOCITY / 1.3
+			velocity.y = JUMP_VELOCITY / 1.25
 		else:
 			velocity.y = JUMP_VELOCITY
 		jumping = true

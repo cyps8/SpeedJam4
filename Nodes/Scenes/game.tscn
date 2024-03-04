@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://tqhlq2q0yret"]
+[gd_scene load_steps=34 format=3 uid="uid://tqhlq2q0yret"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_i4kfv"]
 [ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="2_yhb5q"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cfx5tcuywkqc" path="res://Assets/Art/HUD/Health_Heart_Icon.png" id="15_tut7x"]
 [ext_resource type="Texture2D" uid="uid://enwtsnmfelmq" path="res://Assets/Art/HUD/Overflow_Drop_Icon_Empty.png" id="16_he7dy"]
 [ext_resource type="Texture2D" uid="uid://bsogdhg31rhss" path="res://Assets/Art/HUD/Overflow_Drop_Icon.png" id="17_bcgqk"]
+[ext_resource type="AudioStream" uid="uid://cukxhaq36bpeh" path="res://Assets/Sounds/water.ogg" id="18_pwgll"]
 
 [sub_resource type="Gradient" id="Gradient_1w3a4"]
 interpolation_mode = 1
@@ -126,6 +127,16 @@ size = Vector2(25000, 1000)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl7cv"]
 size = Vector2(319, 542)
+
+[sub_resource type="Gradient" id="Gradient_7hdob"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.00649351, 0.993506)
+colors = PackedColorArray(0.286275, 0.376471, 0.294118, 1, 0.203922, 0.262745, 0.25098, 0.929412, 0.286275, 0.376471, 0.294118, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oav7j"]
+gradient = SubResource("Gradient_7hdob")
+width = 32
+height = 1
 
 [node name="Game" type="Node"]
 script = ExtResource("1_i4kfv")
@@ -586,6 +597,18 @@ fill_mode = 3
 nine_patch_stretch = true
 texture_under = ExtResource("16_he7dy")
 texture_progress = ExtResource("17_bcgqk")
+
+[node name="WaterFall" type="Sprite2D" parent="Game" groups=["Waterfall"]]
+z_index = -20
+position = Vector2(672, 352)
+scale = Vector2(3, 2000)
+texture = SubResource("GradientTexture2D_oav7j")
+
+[node name="WaterSounds" type="AudioStreamPlayer" parent="Game"]
+stream = ExtResource("18_pwgll")
+volume_db = -80.0
+autoplay = true
+bus = &"SFX"
 
 [connection signal="pressed" from="PauseMenu/c/Panel/ButtonResume" to="PauseMenu" method="ResumeButton"]
 [connection signal="pressed" from="PauseMenu/c/Panel/ButtonOptions" to="PauseMenu" method="OptionsButton"]

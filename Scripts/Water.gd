@@ -13,6 +13,9 @@ func RaiseWater():
 func _process(_delta):
 	%WaterSprite.position.y = position.y - 506
 
+	for waterfall in get_tree().get_nodes_in_group("Waterfall"):
+		waterfall.position.y = position.y - 506
+
 func OnEntered(_body):
 	if _body == %Player || _body.is_in_group("Floatable"):
 		_body.EnterWater()
