@@ -23,6 +23,7 @@ func TogglePause():
 	else:
 		get_tree().paused = false
 		remove_child(pauseRef)
+		AudioPlayer.instance.PlaySound(8, AudioPlayer.SoundType.SFX)
 
 
 func _process(_delta):

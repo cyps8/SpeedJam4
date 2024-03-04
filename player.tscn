@@ -278,7 +278,7 @@ z_index = 2
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_1n84n")
 animation = &"valving"
-frame_progress = 0.128628
+frame_progress = 0.120314
 
 [node name="RollBar" type="TextureProgressBar" parent="."]
 visible = false
