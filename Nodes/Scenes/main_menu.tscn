@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://c76x5ojltri0v"]
+[gd_scene load_steps=11 format=3 uid="uid://c76x5ojltri0v"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_w28dh"]
 [ext_resource type="Theme" uid="uid://wsg6dbyy4h7y" path="res://Res/MainTheme.tres" id="2_ermwq"]
 [ext_resource type="TileSet" uid="uid://b14pwnmeoipd5" path="res://Res/Tilemap.tres" id="2_r0yb6"]
 [ext_resource type="Script" path="res://Scripts/MenuButton.gd" id="3_trer4"]
+[ext_resource type="Texture2D" uid="uid://m5canprm4bxl" path="res://Assets/Art/UI/Credits_Avatar_for_Friendly_Mimic.png" id="5_56fej"]
 [ext_resource type="Texture2D" uid="uid://c1rk6f4wjdv1k" path="res://Assets/Art/Enemies/Gator.png" id="5_828co"]
+[ext_resource type="Texture2D" uid="uid://b5lite4s5qv5d" path="res://Assets/Art/UI/Credits_Avatar_for_Snow.png" id="6_t4qyj"]
+[ext_resource type="Texture2D" uid="uid://ji18qjlw6vd3" path="res://Assets/Art/UI/Credits_Avatar_for_Aenjo.png" id="7_ngigg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_svfxd"]
 atlas = ExtResource("5_828co")
@@ -121,6 +124,10 @@ offset_bottom = 73.0
 theme_override_font_sizes/font_size = 50
 text = "CREDITS"
 
+[node name="CreditsAvatarForFriendlyMimic" type="Sprite2D" parent="Credits/c/Panel"]
+position = Vector2(628, 200)
+texture = ExtResource("5_56fej")
+
 [node name="FriendlyMimic" type="Label" parent="Credits/c/Panel"]
 layout_mode = 0
 offset_left = 64.0
@@ -130,6 +137,10 @@ offset_bottom = 205.0
 theme_override_font_sizes/font_size = 25
 text = "FRIENDLY MIMIC - ART & DESIGN"
 
+[node name="CreditsAvatarForSnow" type="Sprite2D" parent="Credits/c/Panel"]
+position = Vector2(623, 319)
+texture = ExtResource("6_t4qyj")
+
 [node name="Cyps" type="Label" parent="Credits/c/Panel"]
 layout_mode = 0
 offset_left = 62.0
@@ -138,6 +149,10 @@ offset_right = 575.0
 offset_bottom = 333.0
 theme_override_font_sizes/font_size = 25
 text = "CYPS - PROGRAMMING & DESIGN"
+
+[node name="CreditsAvatarForAenjo" type="Sprite2D" parent="Credits/c/Panel"]
+position = Vector2(457, 430)
+texture = ExtResource("7_ngigg")
 
 [node name="Aenjo" type="Label" parent="Credits/c/Panel"]
 layout_mode = 0

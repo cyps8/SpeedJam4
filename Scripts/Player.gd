@@ -58,7 +58,7 @@ func Respawn():
 	AudioPlayer.instance.PlaySound(10, AudioPlayer.SoundType.SFX)
 	position = %Game.respawnPos
 	$Sprite.visible = true
-	%Camera.position.x = clamp(position.x, 0, INF)
+	%Camera.position.x = clamp(position.x, 0, 22500)
 	eaten = false
 
 func _physics_process(delta):
